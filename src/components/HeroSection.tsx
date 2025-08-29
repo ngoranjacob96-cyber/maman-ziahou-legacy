@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 
 const HeroSection = () => {
   return (
-    <section id="accueil" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero">
+    <section id="accueil" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero pt-20">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
@@ -29,22 +29,24 @@ const HeroSection = () => {
       <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
         {/* Logo E.E.R.E.B */}
         <div className="mb-8">
-          <div className="inline-flex items-center space-x-4 bg-background/80 backdrop-blur-sm rounded-full px-8 py-4 shadow-card">
+          <div className="inline-flex items-center space-x-4 bg-background/90 backdrop-blur-sm rounded-full px-8 py-4 shadow-card border border-primary/20">
             <img 
               src="/lovable-uploads/706bed56-43b4-4188-8f73-ec75cf5708f8.png" 
               alt="Logo E.E.R.E.B Église Évangélique de la Résurrection et de Bénédictions Côte d'Ivoire" 
               className="h-12 w-12 object-contain"
             />
             <div>
-              <span className="font-script text-2xl font-bold text-primary">E.E.R.E.B</span>
-              <div className="font-sans text-sm text-muted-foreground">Ressuscités pour sauver !</div>
+              <span className="font-sans text-2xl font-bold text-primary tracking-wide">E.E.R.E.B</span>
+              <div className="font-sans text-sm text-muted-foreground font-medium">Ressuscités pour sauver !</div>
             </div>
           </div>
         </div>
 
         {/* Main Title - H1 optimisé SEO */}
-        <h1 className="font-script text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-foreground leading-tight">
-          E.E.R.E.B - Ressuscités pour sauver !
+        <h1 className="font-sans text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground leading-tight tracking-wide">
+          <span className="bg-gradient-primary bg-clip-text text-transparent drop-shadow-lg">E.E.R.E.B</span>
+          <br />
+          <span className="text-2xl md:text-4xl lg:text-5xl font-medium">Ressuscités pour sauver !</span>
         </h1>
         
         <div className="font-script text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">

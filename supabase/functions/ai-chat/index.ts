@@ -61,7 +61,7 @@ serve(async (req) => {
 
     console.log('AI Response:', aiResponse);
 
-    return new Response(JSON.stringify({ response: aiResponse }), {
+    return new Response(JSON.stringify({ reply: aiResponse }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (error) {
