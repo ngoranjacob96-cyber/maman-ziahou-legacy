@@ -33,7 +33,7 @@ const AboutSection = () => {
           <div className="text-center mb-16">
             <h2 className="font-script text-4xl md:text-6xl font-bold text-foreground mb-4">
               À propos de{' '}
-              <span className="bg-gradient-primary bg-clip-text text-transparent">
+              <span className="text-primary font-bold text-shadow-lg bg-white/90 px-2 py-1 rounded">
                 Maman ZIAHOU
               </span>
             </h2>

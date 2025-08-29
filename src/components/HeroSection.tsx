@@ -49,9 +49,9 @@ const HeroSection = () => {
         
         <div className="font-script text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">
           Maman{' '}
-          <span className="text-primary font-extrabold drop-shadow-lg">
-            ZIAHOU
-          </span>
+            <span className="text-primary font-bold text-shadow-lg bg-white/80 px-2 py-1 rounded">
+              ZIAHOU
+            </span>
         </div>
 
         {/* Citation Principale */}

@@ -57,7 +57,7 @@ const MinistrySection = () => {
           <div className="text-center mb-16">
             <h2 className="font-script text-4xl md:text-6xl font-bold text-foreground mb-4">
               Ministère &{' '}
-              <span className="bg-gradient-primary bg-clip-text text-transparent">
+              <span className="text-primary font-bold text-shadow-lg bg-white/90 px-2 py-1 rounded">
                 Œuvres
               </span>
             </h2>
@@ -171,10 +171,17 @@ const MinistrySection = () => {
                 vous êtes le bienvenu dans notre communauté de foi.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="font-sans bg-primary text-primary-foreground hover:bg-primary-glow">
+                <Button 
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="font-sans bg-primary text-primary-foreground hover:bg-primary-glow"
+                >
                   Visitez notre Église
                 </Button>
-                <Button variant="outline" className="font-sans border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <Button 
+                  variant="outline" 
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="font-sans border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                >
                   Demander une Prière
                 </Button>
               </div>

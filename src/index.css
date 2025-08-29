@@ -12,18 +12,18 @@ All colors MUST be HSL.
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
-    /* Brand colors - Golden theme for spiritual portfolio */
-    --primary: 51 100% 50%;  /* Golden yellow #FFD700 */
-    --primary-foreground: 0 0% 0%;
-    --primary-glow: 45 100% 70%;  /* Lighter gold */
+    /* Brand colors - Royal Blue theme for better visibility */
+    --primary: 220 100% 45%;  /* Royal Blue #0066FF */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 230 100% 60%;  /* Lighter royal blue */
     
     /* Secondary colors */
     --secondary: 200 70% 85%;  /* Light blue */
     --secondary-foreground: 220 90% 20%;
     
     /* Accent colors */
-    --accent: 45 95% 95%;  /* Very light gold */
-    --accent-foreground: 51 100% 30%;
+    --accent: 220 30% 95%;  /* Very light blue */
+    --accent-foreground: 220 100% 30%;
     
     /* Surface colors */
     --card: 0 0% 100%;
@@ -32,21 +32,21 @@ All colors MUST be HSL.
     --popover-foreground: 222.2 84% 4.9%;
     
     /* Utility colors */
-    --muted: 45 30% 95%;
+    --muted: 220 15% 95%;
     --muted-foreground: 215.4 16.3% 46.9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 45 20% 90%;
-    --input: 45 20% 90%;
-    --ring: 51 100% 50%;
+    --border: 220 13% 90%;
+    --input: 220 13% 90%;
+    --ring: 220 100% 45%;
     
     /* Custom gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(51 100% 50%), hsl(45 100% 70%));
-    --gradient-hero: linear-gradient(135deg, hsl(51 100% 50% / 0.1), hsl(45 100% 70% / 0.05));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(45 30% 98%));
+    --gradient-primary: linear-gradient(135deg, hsl(220 100% 45%), hsl(230 100% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 100% 45% / 0.1), hsl(230 100% 60% / 0.05));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 15% 98%));
     
     /* Shadows */
-    --shadow-golden: 0 10px 30px -10px hsl(51 100% 50% / 0.3);
+    --shadow-golden: 0 10px 30px -10px hsl(220 100% 45% / 0.3);
     --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.1);
     --shadow-card: 0 8px 32px -8px hsl(51 100% 50% / 0.15);
     
@@ -74,8 +74,8 @@ All colors MUST be HSL.
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 51 100% 60%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 220 100% 60%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
@@ -86,10 +86,10 @@ All colors MUST be HSL.
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 51 100% 60%;
+    --ring: 220 100% 60%;
     
-    --gradient-primary: linear-gradient(135deg, hsl(51 100% 60%), hsl(45 100% 80%));
-    --gradient-hero: linear-gradient(135deg, hsl(51 100% 60% / 0.1), hsl(45 100% 80% / 0.05));
+    --gradient-primary: linear-gradient(135deg, hsl(220 100% 60%), hsl(230 100% 70%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 100% 60% / 0.1), hsl(230 100% 70% / 0.05));
     --gradient-card: linear-gradient(145deg, hsl(222.2 84% 4.9%), hsl(217.2 32.6% 17.5%));
   }
 }
@@ -104,12 +104,13 @@ All colors MUST be HSL.
   }
   
   .text-shadow-lg {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 8px rgba(255, 215, 0, 0.4);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 8px rgba(34, 102, 255, 0.4);
   }
   
   .text-primary {
     color: hsl(var(--primary));
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
   }
   
   .font-extrabold {

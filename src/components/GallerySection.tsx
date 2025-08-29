@@ -202,7 +202,7 @@ const GallerySection = () => {
           <div className="text-center mb-16">
             <h2 className="font-script text-4xl md:text-6xl font-bold text-foreground mb-4">
               Galerie{' '}
-              <span className="bg-gradient-primary bg-clip-text text-transparent">
+              <span className="text-primary font-bold text-shadow-lg bg-white/90 px-2 py-1 rounded">
                 Photos & Vidéos
               </span>
             </h2>
@@ -241,6 +241,7 @@ const GallerySection = () => {
           <div className="text-center mt-12">
             <Button 
               variant="outline" 
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="font-sans border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-3"
             >
               Voir Plus de Contenus
