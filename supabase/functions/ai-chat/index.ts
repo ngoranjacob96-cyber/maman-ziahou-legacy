@@ -101,10 +101,6 @@ serve(async (req) => {
     
     console.log('Received message:', message);
 
-    if (!openAIApiKey) {
-      throw new Error('OpenAI API key not configured');
-    }
-
     let aiResponse;
     
     if (!openAIApiKey) {
