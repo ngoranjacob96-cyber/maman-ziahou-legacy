@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Play, Clock, Eye } from 'lucide-react';
 
@@ -28,8 +28,8 @@ const GallerySection = () => {
 
   type GalleryItem = ImageItem | VideoItem;
 
-  // Gallery Images
-  const galleryItems: ImageItem[] = [
+  // Données de la galerie - Images réelles du ministère
+  const galleryImages: ImageItem[] = [
     {
       type: 'image',
       category: 'cultes',
@@ -57,25 +57,11 @@ const GallerySection = () => {
       title: 'Fidèles en Méditation',
       description: 'Moments de recueillement avec la Parole',
       image: '/lovable-uploads/dab1fc28-bcdb-4044-817f-bd6f44e052c9.png'
-    },
-    {
-      type: 'image',
-      category: 'conferences',
-      title: 'Croisade d\'Évangélisation',
-      description: 'Prédication en plein air',
-      image: '/placeholder.svg'
-    },
-    {
-      type: 'image',
-      category: 'communaute',
-      title: 'École du Dimanche',
-      description: 'Formation des enfants',
-      image: '/placeholder.svg'
     }
   ];
 
-  // Gallery Videos
-  const videoItems: VideoItem[] = [
+  // Données de la galerie - Vidéos YouTube authentiques
+  const galleryVideos: VideoItem[] = [
     {
       type: 'video',
       category: 'videos',
@@ -105,52 +91,88 @@ const GallerySection = () => {
       duration: '1:23:45',
       views: '15.7K',
       videoUrl: 'https://youtu.be/_J7BfHIaB9M?si=g-lcG4iYEokQRdue'
-    },
-    {
-      type: 'video',
-      category: 'videos',
-      title: 'Conférence: "L\'Espoir en Temps Difficile"',
-      description: 'Enseignement réconfortant et édifiant',
-      thumbnail: '/placeholder.svg',
-      duration: '58:20',
-      views: '9.8K',
-      videoUrl: '#'
-    },
-    {
-      type: 'video',
-      category: 'videos',
-      title: 'Prière Collective de Réveil',
-      description: 'Moment de prière intense et puissant',
-      thumbnail: '/placeholder.svg',
-      duration: '32:10',
-      views: '11.3K',
-      videoUrl: '#'
-    },
-    {
-      type: 'video',
-      category: 'videos',
-      title: 'Formation des Nouveaux Convertis',
-      description: 'Session d\'enseignement biblique',
-      thumbnail: '/placeholder.svg',
-      duration: '41:55',
-      views: '6.9K',
-      videoUrl: '#'
     }
   ];
 
-  const allItems: GalleryItem[] = [...galleryItems, ...videoItems];
+  // Toutes les données combinées
+  const allGalleryItems: GalleryItem[] = [...galleryImages, ...galleryVideos];
 
+  // Catégories disponibles
   const categories = [
     { id: 'tous', label: 'Tous' },
     { id: 'cultes', label: 'Cultes' },
-    { id: 'conferences', label: 'Conférences' },
     { id: 'communaute', label: 'Communauté' },
     { id: 'videos', label: 'Vidéos' }
   ];
 
+  // Filtrage des éléments
   const filteredItems = filter === 'tous' 
-    ? allItems 
-    : allItems.filter(item => item.category === filter);
+    ? allGalleryItems 
+    : allGalleryItems.filter(item => item.category === filter);
+
+  // Fonction pour gérer le clic sur une vidéo
+  const handleVideoClick = (videoUrl: string) => {
+    window.open(videoUrl, '_blank');
+  };
+
+  // Composant pour rendre un élément image
+  const renderImageItem = (item: ImageItem, index: number) => (
+    <Card key={index} className="group overflow-hidden hover:shadow-card transition-all duration-300 bg-background/80 backdrop-blur-sm border-primary/10">
+      <div className="relative overflow-hidden">
+        <img
+          src={item.image}
+          alt={item.title}
+          className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          <h4 className="font-script text-lg font-semibold mb-1">{item.title}</h4>
+          <p className="font-sans text-sm opacity-90">{item.description}</p>
+        </div>
+      </div>
+    </Card>
+  );
+
+  // Composant pour rendre un élément vidéo
+  const renderVideoItem = (item: VideoItem, index: number) => (
+    <Card key={index} className="group overflow-hidden hover:shadow-card transition-all duration-300 bg-background/80 backdrop-blur-sm border-primary/10">
+      <div className="relative overflow-hidden">
+        <img
+          src={item.thumbnail}
+          alt={item.title}
+          className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+        />
+        {/* Play Button Overlay */}
+        <div 
+          className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors duration-300 cursor-pointer"
+          onClick={() => handleVideoClick(item.videoUrl)}
+        >
+          <div className="w-16 h-16 bg-primary/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <Play className="h-8 w-8 text-primary-foreground ml-1" fill="currentColor" />
+          </div>
+        </div>
+        {/* Video Duration */}
+        <div className="absolute top-2 left-2">
+          <span className="bg-black/70 text-white text-xs px-2 py-1 rounded flex items-center space-x-1">
+            <Clock className="h-3 w-3" />
+            <span>{item.duration}</span>
+          </span>
+        </div>
+        {/* Video Views */}
+        <div className="absolute top-2 right-2">
+          <span className="bg-black/70 text-white text-xs px-2 py-1 rounded flex items-center space-x-1">
+            <Eye className="h-3 w-3" />
+            <span>{item.views}</span>
+          </span>
+        </div>
+        {/* Video Title Overlay */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 text-white bg-gradient-to-t from-black/80 to-transparent">
+          <h4 className="font-script text-lg font-semibold mb-1">{item.title}</h4>
+          <p className="font-sans text-sm opacity-90">{item.description}</p>
+        </div>
+      </div>
+    </Card>
+  );
 
   return (
     <section id="galerie" className="py-20 bg-gradient-card">
@@ -190,63 +212,9 @@ const GallerySection = () => {
 
           {/* Gallery Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredItems.map((item, index) => (
-              <Card key={index} className="group overflow-hidden hover:shadow-card transition-all duration-300 bg-background/80 backdrop-blur-sm border-primary/10">
-                <div className="relative overflow-hidden">
-                  {item.type === 'video' ? (
-                    // Video Item
-                    <>
-                      <img
-                        src={item.thumbnail}
-                        alt={item.title}
-                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                       {/* Play Button Overlay */}
-                       <div 
-                         className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors duration-300 cursor-pointer"
-                         onClick={() => window.open(item.videoUrl, '_blank')}
-                       >
-                         <div className="w-16 h-16 bg-primary/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                           <Play className="h-8 w-8 text-primary-foreground ml-1" fill="currentColor" />
-                         </div>
-                       </div>
-                      {/* Video Info */}
-                      <div className="absolute top-2 left-2 flex space-x-2">
-                        <span className="bg-black/70 text-white text-xs px-2 py-1 rounded flex items-center space-x-1">
-                          <Clock className="h-3 w-3" />
-                          <span>{item.duration}</span>
-                        </span>
-                      </div>
-                      <div className="absolute top-2 right-2">
-                        <span className="bg-black/70 text-white text-xs px-2 py-1 rounded flex items-center space-x-1">
-                          <Eye className="h-3 w-3" />
-                          <span>{item.views}</span>
-                        </span>
-                      </div>
-                      {/* Video Title Overlay */}
-                      <div className="absolute bottom-0 left-0 right-0 p-4 text-white bg-gradient-to-t from-black/80 to-transparent">
-                        <h4 className="font-script text-lg font-semibold mb-1">{item.title}</h4>
-                        <p className="font-sans text-sm opacity-90">{item.description}</p>
-                      </div>
-                    </>
-                  ) : (
-                    // Image Item
-                    <>
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                        <h4 className="font-script text-lg font-semibold mb-1">{item.title}</h4>
-                        <p className="font-sans text-sm opacity-90">{item.description}</p>
-                      </div>
-                    </>
-                  )}
-                </div>
-              </Card>
-            ))}
+            {filteredItems.map((item, index) => 
+              item.type === 'video' ? renderVideoItem(item, index) : renderImageItem(item, index)
+            )}
           </div>
 
           {/* Load More Button */}
