@@ -63,7 +63,7 @@ const MinistrySection = () => {
             </h2>
             <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
             <p className="font-sans text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              L'Église Évangélique de la Résurrection et de Bénédictions (E.E.R.E.B) œuvre pour l'expansion du Royaume de Dieu
+              L'Église Évangélique de la Résurrection et de Bénédictions (E.E.R.E.B) en Côte d'Ivoire œuvre pour l'évangélisation et l'expansion du Royaume de Dieu à travers la formation biblique et les cultes de louange et adoration
             </p>
           </div>
 

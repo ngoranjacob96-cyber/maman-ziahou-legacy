@@ -8,7 +8,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 z-0">
         <img
           src="/lovable-uploads/1fac5717-8a81-4835-91d7-cb03ec4cd10b.png"
-          alt="Maman ZIAHOU en ministère - Culte de louange et d'adoration"
+          alt="Maman ZIAHOU leader spirituelle de l'Église évangélique E.E.R.E.B en Côte d'Ivoire - Ministère chrétien Abidjan avec louange et adoration"
           className="w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-background/70 to-primary/20"></div>
@@ -32,7 +32,7 @@ const HeroSection = () => {
           <div className="inline-flex items-center space-x-4 bg-background/80 backdrop-blur-sm rounded-full px-8 py-4 shadow-card">
             <img 
               src="/lovable-uploads/706bed56-43b4-4188-8f73-ec75cf5708f8.png" 
-              alt="Logo E.E.R.E.B" 
+              alt="Logo E.E.R.E.B Église Évangélique de la Résurrection et de Bénédictions Côte d'Ivoire" 
               className="h-12 w-12 object-contain"
             />
             <div>
@@ -42,13 +42,17 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Main Title */}
+        {/* Main Title - H1 optimisé SEO */}
         <h1 className="font-script text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-foreground leading-tight">
+          E.E.R.E.B - Ressuscités pour sauver !
+        </h1>
+        
+        <div className="font-script text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">
           Maman{' '}
           <span className="bg-gradient-primary bg-clip-text text-transparent">
             ZIAHOU
           </span>
-        </h1>
+        </div>
 
         {/* Citation Principale */}
         <div className="mb-8 p-6 bg-background/90 backdrop-blur-sm rounded-2xl shadow-card border border-primary/20">

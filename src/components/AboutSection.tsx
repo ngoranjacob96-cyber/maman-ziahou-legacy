@@ -51,14 +51,14 @@ const AboutSection = () => {
                   Une Mission Divine
                 </h3>
                 <p className="font-sans text-lg leading-relaxed text-foreground">
-                  Maman ZIAHOU est une leader spirituelle reconnue, fondatrice et dirigeante de l'Église Évangélique 
-                  de la Résurrection et de Bénédictions (E.E.R.E.B). Depuis plus de deux décennies, elle consacre 
-                  sa vie à l'évangélisation et au service communautaire.
+                  Maman ZIAHOU est une leader spirituelle reconnue en Côte d'Ivoire, fondatrice et dirigeante de l'Église Évangélique 
+                  de la Résurrection et de Bénédictions (E.E.R.E.B) basée à Abidjan. Depuis plus de deux décennies, elle consacre 
+                  sa vie à l'évangélisation en Côte d'Ivoire et au service communautaire à travers son ministère chrétien.
                 </p>
                 <p className="font-sans text-lg leading-relaxed text-foreground">
-                  Son ministère est marqué par une compassion profonde pour les âmes perdues et un engagement 
-                  indéfectible envers l'œuvre de Dieu. Elle prêche avec autorité et simplicité, touchant 
-                  les cœurs par sa sincérité et son authenticité.
+                  Son ministère de louange et adoration est marqué par une compassion profonde pour les âmes perdues et un engagement 
+                  indéfectible envers l'œuvre de Dieu. Elle prêche avec autorité lors de cultes en direct et formation biblique, touchant 
+                  les cœurs par sa sincérité et son authenticité dans l'Église en ligne Afrique.
                 </p>
               </div>
 
