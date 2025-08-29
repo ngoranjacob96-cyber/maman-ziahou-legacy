@@ -33,30 +33,30 @@ const GallerySection = () => {
     {
       type: 'image',
       category: 'cultes',
-      title: 'Service Dominical',
-      description: 'Moment de louange et adoration',
-      image: '/placeholder.svg'
-    },
-    {
-      type: 'image',
-      category: 'conferences',
-      title: 'Conférence Annuelle',
-      description: 'Rassemblement des leaders',
-      image: '/placeholder.svg'
-    },
-    {
-      type: 'image',
-      category: 'communaute',
-      title: 'Œuvre Sociale',
-      description: 'Distribution aux nécessiteux',
-      image: '/placeholder.svg'
+      title: 'Maman ZIAHOU en Prédication',
+      description: 'Culte de louange et d\'adoration - 03.08.2025',
+      image: '/lovable-uploads/d99e0a7c-4b2b-488c-b21d-3d0fb689a793.png'
     },
     {
       type: 'image',
       category: 'cultes',
-      title: 'Baptême',
-      description: 'Nouvelle vie en Christ',
-      image: '/placeholder.svg'
+      title: 'Moment de Prière Collective',
+      description: 'Congrégation en méditation et prière - 24.08.2025',
+      image: '/lovable-uploads/4a253aaa-226f-43d3-9de7-b7bc6558fd47.png'
+    },
+    {
+      type: 'image',
+      category: 'cultes',
+      title: 'Service de Louange',
+      description: 'Maman ZIAHOU dirigeant l\'adoration',
+      image: '/lovable-uploads/896c6414-6925-4c58-884f-c7ec1ca1e505.png'
+    },
+    {
+      type: 'image',
+      category: 'communaute',
+      title: 'Fidèles en Méditation',
+      description: 'Moments de recueillement avec la Parole',
+      image: '/lovable-uploads/dab1fc28-bcdb-4044-817f-bd6f44e052c9.png'
     },
     {
       type: 'image',
