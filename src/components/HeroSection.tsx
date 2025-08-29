@@ -30,9 +30,16 @@ const HeroSection = () => {
       <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
         {/* Logo E.E.R.E.B */}
         <div className="mb-8">
-          <div className="inline-flex items-center space-x-3 bg-background/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-card">
-            <Heart className="h-8 w-8 text-primary" />
-            <span className="font-script text-2xl font-bold text-primary">E.E.R.E.B</span>
+          <div className="inline-flex items-center space-x-4 bg-background/80 backdrop-blur-sm rounded-full px-8 py-4 shadow-card">
+            <img 
+              src="/lovable-uploads/706bed56-43b4-4188-8f73-ec75cf5708f8.png" 
+              alt="Logo E.E.R.E.B" 
+              className="h-12 w-12 object-contain"
+            />
+            <div>
+              <span className="font-script text-2xl font-bold text-primary">E.E.R.E.B</span>
+              <div className="font-sans text-sm text-muted-foreground">Ressuscités pour sauver !</div>
+            </div>
           </div>
         </div>
 

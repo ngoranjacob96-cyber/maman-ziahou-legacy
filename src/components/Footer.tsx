@@ -26,10 +26,14 @@ const Footer = () => {
             {/* About Section */}
             <div>
               <div className="flex items-center space-x-3 mb-6">
-                <Heart className="h-8 w-8 text-primary" />
+                <img 
+                  src="/lovable-uploads/706bed56-43b4-4188-8f73-ec75cf5708f8.png" 
+                  alt="Logo E.E.R.E.B" 
+                  className="h-10 w-10 object-contain"
+                />
                 <div>
                   <div className="font-script text-xl font-bold text-primary">E.E.R.E.B</div>
-                  <div className="text-xs text-background/80 font-sans">Maman ZIAHOU</div>
+                  <div className="text-xs text-background/80 font-sans">Ressuscités pour sauver !</div>
                 </div>
               </div>
               <p className="font-sans text-background/80 leading-relaxed mb-6">
@@ -85,11 +89,11 @@ const Footer = () => {
               <div className="space-y-4">
                 <div className="flex items-center space-x-3 text-background/80">
                   <Phone className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span className="font-sans text-sm">+225 XX XX XX XX XX</span>
+                  <span className="font-sans text-sm">07 00 81 83 98</span>
                 </div>
                 <div className="flex items-center space-x-3 text-background/80">
                   <Mail className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span className="font-sans text-sm">contact@eereb.ci</span>
+                  <span className="font-sans text-sm">eereb-ci.org</span>
                 </div>
                 <div className="flex items-center space-x-3 text-background/80">
                   <MapPin className="h-5 w-5 text-primary flex-shrink-0" />

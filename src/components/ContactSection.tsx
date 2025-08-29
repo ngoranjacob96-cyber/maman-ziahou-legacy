@@ -9,14 +9,14 @@ const ContactSection = () => {
     {
       icon: Phone,
       title: "Téléphone",
-      content: "+225 XX XX XX XX XX",
+      content: "07 00 81 83 98",
       action: "Appeler maintenant"
     },
     {
       icon: Mail,
-      title: "Email",
-      content: "contact@eereb.ci",
-      action: "Envoyer un email"
+      title: "Site Web",
+      content: "eereb-ci.org",
+      action: "Visiter le site"
     },
     {
       icon: MapPin,
@@ -48,7 +48,7 @@ const ContactSection = () => {
     {
       icon: MessageCircle,
       name: "WhatsApp",
-      handle: "+225 XX XX XX XX",
+      handle: "07 00 81 83 98",
       color: "text-green-600"
     }
   ];

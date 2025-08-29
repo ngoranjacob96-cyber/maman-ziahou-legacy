@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, Heart, Phone, Mail } from 'lucide-react';
+import { Menu, X, Phone, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Navigation = () => {
@@ -20,7 +20,11 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <Heart className="h-8 w-8 text-primary" />
+            <img 
+              src="/lovable-uploads/706bed56-43b4-4188-8f73-ec75cf5708f8.png" 
+              alt="Logo E.E.R.E.B" 
+              className="h-12 w-12 object-contain"
+            />
             <div>
               <div className="font-script text-xl font-bold text-primary">E.E.R.E.B</div>
               <div className="text-xs text-muted-foreground font-sans">Maman ZIAHOU</div>
@@ -46,11 +50,11 @@ const Navigation = () => {
           <div className="hidden lg:flex items-center space-x-4 text-sm text-muted-foreground">
             <div className="flex items-center space-x-2">
               <Phone className="h-4 w-4" />
-              <span className="font-sans">+225 XX XX XX XX</span>
+              <span className="font-sans">07 00 81 83 98</span>
             </div>
             <div className="flex items-center space-x-2">
               <Mail className="h-4 w-4" />
-              <span className="font-sans">contact@eereb.ci</span>
+              <span className="font-sans">eereb-ci.org</span>
             </div>
           </div>
 
