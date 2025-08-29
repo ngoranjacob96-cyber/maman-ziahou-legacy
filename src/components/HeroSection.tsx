@@ -1,6 +1,5 @@
 import { ArrowDown, Star, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import heroImage from '@/assets/hero-maman-ziahou.jpg';
 
 const HeroSection = () => {
   return (
@@ -8,11 +7,11 @@ const HeroSection = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src={heroImage}
-          alt="Maman ZIAHOU - Leader Spirituelle"
+          src="/lovable-uploads/1fac5717-8a81-4835-91d7-cb03ec4cd10b.png"
+          alt="Maman ZIAHOU en ministère - Culte de louange et d'adoration"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background/60 to-primary/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-background/70 to-primary/20"></div>
       </div>
 
       {/* Floating decorative elements */}
