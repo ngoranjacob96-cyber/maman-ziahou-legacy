@@ -53,9 +53,10 @@ export default function PrayerRequestForm() {
 
       if (error) {
         console.error('Error submitting prayer request:', error);
+        console.error('Error details:', JSON.stringify(error, null, 2));
         toast({
           title: "Erreur",
-          description: "Une erreur est survenue lors de l'envoi de votre demande. Veuillez réessayer.",
+          description: `Une erreur est survenue: ${error.message || 'Veuillez réessayer'}`,
           variant: "destructive"
         });
         return;
