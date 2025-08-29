@@ -10,7 +10,7 @@ const Navigation = () => {
     { name: 'À propos', href: '#apropos' },
     { name: 'Ministère', href: '#ministere' },
     { name: 'Galerie', href: '#galerie' },
-    { name: 'Témoignages', href: '#témoignages' },
+    { name: 'Témoignages', href: '#temoignages' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -39,6 +39,10 @@ const Navigation = () => {
                   key={item.name}
                   href={item.href}
                   className="font-sans text-sm font-medium text-foreground hover:text-primary transition-colors duration-200 px-3 py-2 rounded-md hover:bg-accent"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.querySelector(item.href)?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                 >
                   {item.name}
                 </a>
@@ -81,7 +85,11 @@ const Navigation = () => {
                 key={item.name}
                 href={item.href}
                 className="font-sans block px-3 py-2 rounded-md text-base font-medium text-foreground hover:text-primary hover:bg-accent transition-colors duration-200"
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.querySelector(item.href)?.scrollIntoView({ behavior: 'smooth' });
+                  setIsOpen(false);
+                }}
               >
                 {item.name}
               </a>

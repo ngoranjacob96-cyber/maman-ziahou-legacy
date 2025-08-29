@@ -1,0 +1,27 @@
+import React from 'react';
+import { MessageCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+const WhatsAppButton = () => {
+  const phoneNumber = "2250709876543"; // Numéro de téléphone au format international (sans le +)
+  const message = "Bonjour Maman ZIAHOU, j'aimerais discuter avec vous à propos de votre ministère.";
+  
+  const handleWhatsAppClick = () => {
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  return (
+    <Button
+      onClick={handleWhatsAppClick}
+      className="fixed bottom-6 left-6 z-50 rounded-full w-14 h-14 shadow-lg bg-green-500 hover:bg-green-600 text-white"
+      size="icon"
+      aria-label="Contacter via WhatsApp"
+    >
+      <MessageCircle className="h-6 w-6" />
+    </Button>
+  );
+};
+
+export default WhatsAppButton;

@@ -61,14 +61,14 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section id="témoignages" className="py-20 bg-background">
+    <section id="temoignages" className="py-20 bg-background">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="font-script text-4xl md:text-6xl font-bold text-foreground mb-4">
               Témoignages &{' '}
-              <span className="bg-gradient-primary bg-clip-text text-transparent">
+              <span className="text-primary font-bold text-shadow-lg">
                 Bénédictions
               </span>
             </h2>
@@ -142,10 +142,16 @@ const TestimonialsSection = () => {
                 pour encourager d'autres personnes dans leur parcours de foi.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="font-sans bg-background text-primary px-6 py-3 rounded-lg hover:bg-background/90 transition-colors">
+                <button 
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="font-sans bg-background text-primary px-6 py-3 rounded-lg hover:bg-background/90 transition-colors"
+                >
                   Partager Mon Témoignage
                 </button>
-                <button className="font-sans border-2 border-background text-background px-6 py-3 rounded-lg hover:bg-background hover:text-primary transition-colors">
+                <button 
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="font-sans border-2 border-background text-background px-6 py-3 rounded-lg hover:bg-background hover:text-primary transition-colors"
+                >
                   Demander une Prière
                 </button>
               </div>
