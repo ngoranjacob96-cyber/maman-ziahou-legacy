@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Play, Clock, Eye } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Play, Clock, Eye, X } from 'lucide-react';
 
 const GallerySection = () => {
   const [filter, setFilter] = useState('tous');
+  const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Type definitions
   type ImageItem = {
@@ -110,14 +113,30 @@ const GallerySection = () => {
     ? allGalleryItems 
     : allGalleryItems.filter(item => item.category === filter);
 
-  // Fonction pour gérer le clic sur une vidéo
-  const handleVideoClick = (videoUrl: string) => {
-    window.open(videoUrl, '_blank');
+  // Fonctions pour gérer les modals
+  const handleItemClick = (item: GalleryItem) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedItem(null);
+  };
+
+  // Fonction pour convertir YouTube URL en embed
+  const getYouTubeEmbedUrl = (url: string) => {
+    const videoIdMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
+    return videoIdMatch ? `https://www.youtube.com/embed/${videoIdMatch[1]}` : url;
   };
 
   // Composant pour rendre un élément image
   const renderImageItem = (item: ImageItem, index: number) => (
-    <Card key={index} className="group overflow-hidden hover:shadow-card transition-all duration-300 bg-background/80 backdrop-blur-sm border-primary/10">
+    <Card 
+      key={index} 
+      className="group overflow-hidden hover:shadow-card transition-all duration-300 bg-background/80 backdrop-blur-sm border-primary/10 cursor-pointer"
+      onClick={() => handleItemClick(item)}
+    >
       <div className="relative overflow-hidden">
         <img
           src={item.image}
@@ -135,7 +154,11 @@ const GallerySection = () => {
 
   // Composant pour rendre un élément vidéo
   const renderVideoItem = (item: VideoItem, index: number) => (
-    <Card key={index} className="group overflow-hidden hover:shadow-card transition-all duration-300 bg-background/80 backdrop-blur-sm border-primary/10">
+    <Card 
+      key={index} 
+      className="group overflow-hidden hover:shadow-card transition-all duration-300 bg-background/80 backdrop-blur-sm border-primary/10 cursor-pointer"
+      onClick={() => handleItemClick(item)}
+    >
       <div className="relative overflow-hidden">
         <img
           src={item.thumbnail}
@@ -143,10 +166,7 @@ const GallerySection = () => {
           className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
         />
         {/* Play Button Overlay */}
-        <div 
-          className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors duration-300 cursor-pointer"
-          onClick={() => handleVideoClick(item.videoUrl)}
-        >
+        <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors duration-300">
           <div className="w-16 h-16 bg-primary/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
             <Play className="h-8 w-8 text-primary-foreground ml-1" fill="currentColor" />
           </div>
@@ -238,6 +258,51 @@ const GallerySection = () => {
           </div>
         </div>
       </div>
+
+      {/* Modal pour affichage des images et vidéos */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-4xl w-full h-[90vh] p-0">
+          <DialogHeader className="p-6 pb-2">
+            <DialogTitle className="font-script text-2xl text-foreground">
+              {selectedItem?.title}
+            </DialogTitle>
+          </DialogHeader>
+          
+          <div className="flex-1 overflow-hidden">
+            {selectedItem && (
+              <div className="h-full flex flex-col">
+                {selectedItem.type === 'image' ? (
+                  <div className="flex-1 flex items-center justify-center p-6">
+                    <img
+                      src={selectedItem.image}
+                      alt={selectedItem.title}
+                      className="max-w-full max-h-full object-contain rounded-lg"
+                    />
+                  </div>
+                ) : (
+                  <div className="flex-1 p-6">
+                    <div className="w-full h-full rounded-lg overflow-hidden">
+                      <iframe
+                        src={getYouTubeEmbedUrl(selectedItem.videoUrl)}
+                        title={selectedItem.title}
+                        className="w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                  </div>
+                )}
+                
+                <div className="p-6 pt-2 border-t border-border">
+                  <p className="font-sans text-muted-foreground">
+                    {selectedItem.description}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
