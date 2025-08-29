@@ -2,6 +2,7 @@ import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import MinistrySection from '@/components/MinistrySection';
+import PrayerRequestForm from '@/components/PrayerRequestForm';
 import GallerySection from '@/components/GallerySection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import FAQSection from '@/components/FAQSection';
@@ -17,6 +18,7 @@ const Index = () => {
       <HeroSection />
       <AboutSection />
       <MinistrySection />
+      <PrayerRequestForm />
       <GallerySection />
       <TestimonialsSection />
       <FAQSection />

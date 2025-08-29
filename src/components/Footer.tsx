@@ -8,7 +8,8 @@ const Footer = () => {
     { name: 'À propos', href: '#apropos' },
     { name: 'Ministère', href: '#ministere' },
     { name: 'Galerie', href: '#galerie' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Contact', href: '#contact' },
+    { name: 'Admin Prières', href: '/admin/prayers' }
   ];
 
   const services = [
