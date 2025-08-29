@@ -81,30 +81,30 @@ const GallerySection = () => {
       category: 'videos',
       title: 'Prédication: "La Foi qui Transforme"',
       description: 'Message puissant de Maman ZIAHOU',
-      thumbnail: '/placeholder.svg',
+      thumbnail: 'https://img.youtube.com/vi/xMHSxReg1OI/maxresdefault.jpg',
       duration: '45:32',
       views: '12.5K',
-      videoUrl: '#'
+      videoUrl: 'https://youtu.be/xMHSxReg1OI?si=bPPZQt7JcdruyDhT'
     },
     {
       type: 'video',
       category: 'videos',
       title: 'Témoignage: Miracle de Guérison',
-      description: 'Témoignage touchant d\'une fidèle',
-      thumbnail: '/placeholder.svg',
-      duration: '12:15',
+      description: 'Témoignage touchant et inspiration divine',
+      thumbnail: 'https://img.youtube.com/vi/I_UfgyA5erc/maxresdefault.jpg',
+      duration: '32:15',
       views: '8.2K',
-      videoUrl: '#'
+      videoUrl: 'https://youtu.be/I_UfgyA5erc?si=-vVDhXG8D0zuQYHC'
     },
     {
       type: 'video',
       category: 'videos',
       title: 'Culte de Louange Spécial',
-      description: 'Moments d\'adoration exceptionnels',
-      thumbnail: '/placeholder.svg',
+      description: 'Moments d\'adoration exceptionnels avec E.E.R.E.B',
+      thumbnail: 'https://img.youtube.com/vi/_J7BfHIaB9M/maxresdefault.jpg',
       duration: '1:23:45',
       views: '15.7K',
-      videoUrl: '#'
+      videoUrl: 'https://youtu.be/_J7BfHIaB9M?si=g-lcG4iYEokQRdue'
     },
     {
       type: 'video',
@@ -201,12 +201,15 @@ const GallerySection = () => {
                         alt={item.title}
                         className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                       />
-                      {/* Play Button Overlay */}
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors duration-300">
-                        <div className="w-16 h-16 bg-primary/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 cursor-pointer">
-                          <Play className="h-8 w-8 text-primary-foreground ml-1" fill="currentColor" />
-                        </div>
-                      </div>
+                       {/* Play Button Overlay */}
+                       <div 
+                         className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors duration-300 cursor-pointer"
+                         onClick={() => window.open(item.videoUrl, '_blank')}
+                       >
+                         <div className="w-16 h-16 bg-primary/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                           <Play className="h-8 w-8 text-primary-foreground ml-1" fill="currentColor" />
+                         </div>
+                       </div>
                       {/* Video Info */}
                       <div className="absolute top-2 left-2 flex space-x-2">
                         <span className="bg-black/70 text-white text-xs px-2 py-1 rounded flex items-center space-x-1">
