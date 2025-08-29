@@ -39,11 +39,20 @@ export default function AdminPrayers() {
 
       if (error) {
         console.error('Error fetching prayers:', error);
-        toast({
-          title: "Erreur",
-          description: "Impossible de charger les demandes de prière. Vérifiez vos permissions.",
-          variant: "destructive"
-        });
+        // Check if it's an RLS policy violation (no access due to security restrictions)
+        if (error.code === 'PGRST116' || error.message?.includes('row-level security')) {
+          toast({
+            title: "🔒 Accès sécurisé requis",
+            description: "L'accès aux demandes de prière a été sécurisé. Vous devez implémenter l'authentification pour accéder à cette page d'administration.",
+            variant: "destructive"
+          });
+        } else {
+          toast({
+            title: "Erreur",
+            description: "Impossible de charger les demandes de prière. Vérifiez vos permissions.",
+            variant: "destructive"
+          });
+        }
       } else {
         setPrayers((data as PrayerRequest[]) || []);
       }
