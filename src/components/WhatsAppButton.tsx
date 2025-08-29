@@ -19,7 +19,7 @@ const WhatsAppButton = () => {
       aria-label="Contacter via WhatsApp"
     >
       <img 
-        src="/lovable-uploads/82237185-8bac-48d5-92b1-bcf83f0f8dea.png" 
+        src="/lovable-uploads/d9daccb0-3644-425e-9455-1ecbbf58640f.png" 
         alt="WhatsApp" 
         className="w-full h-full object-contain"
       />
