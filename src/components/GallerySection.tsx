@@ -303,31 +303,42 @@ const GallerySection = () => {
             </p>
           </div>
 
-          {/* Filter Buttons */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {categories.map((category) => (
-              <Button
-                key={category.id}
-                variant={filter === category.id ? "default" : "outline"}
-                onClick={() => setFilter(category.id)}
-                className={`font-sans ${
-                  filter === category.id 
-                    ? 'bg-primary text-primary-foreground hover:bg-primary-glow' 
-                    : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'
-                }`}
-              >
-                {category.label}
-              </Button>
-            ))}
+          {/* Filter Buttons - Supprimés car sections séparées */}
+
+          {/* Gallery Grid - Supprimée pour séparer en sections */}
+          
+          {/* Section Photos */}
+          <div className="mb-20">
+            <div className="text-center mb-12">
+              <h3 className="font-script text-3xl md:text-4xl font-bold text-primary mb-4">
+                Nos Photos
+              </h3>
+              <div className="w-16 h-1 bg-primary mx-auto mb-4"></div>
+              <p className="font-sans text-muted-foreground max-w-xl mx-auto">
+                Découvrez les moments forts de notre ministère en images
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {galleryImages.map((item, index) => renderImageItem(item, index))}
+            </div>
           </div>
 
-          {/* Gallery Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredItems.map((item, index) => {
-              if (item.type === 'video') return renderVideoItem(item, index);
-              if (item.type === 'audio') return renderAudioItem(item, index);
-              return renderImageItem(item, index);
-            })}
+          {/* Section Vidéos */}
+          <div className="mb-20">
+            <div className="text-center mb-12">
+              <h3 className="font-script text-3xl md:text-4xl font-bold text-primary mb-4">
+                Nos Vidéos
+              </h3>
+              <div className="w-16 h-1 bg-primary mx-auto mb-4"></div>
+              <p className="font-sans text-muted-foreground max-w-xl mx-auto">
+                Regardez les prédications et témoignages inspirants
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {galleryVideos.map((item, index) => renderVideoItem(item, index))}
+            </div>
           </div>
 
           {/* Audio Section - Toujours visible */}
