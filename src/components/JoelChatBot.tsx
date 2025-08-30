@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, Send, X, User, Bot, Image, Video, Sparkles, Volume2, Settings, RefreshCw } from 'lucide-react';
+import { MessageCircle, Send, X, User, Bot, Image, Video, Volume2, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -193,14 +193,14 @@ const JoelChatBot = () => {
 
   return (
     <>
-      {/* Chat Button - Sans nom d'affichage */}
+      {/* Chat Button - Symbole de message */}
       <Button
         onClick={() => setIsOpen(true)}
         className="fixed bottom-6 right-6 z-50 rounded-full w-16 h-16 shadow-2xl bg-gradient-to-r from-primary to-primary-glow text-primary-foreground hover:shadow-3xl hover:scale-110 transition-all duration-300 group"
         size="icon"
         aria-label="Ouvrir le chat"
       >
-        <Sparkles className="h-6 w-6 group-hover:rotate-12 transition-transform duration-300" />
+        <MessageCircle className="h-6 w-6 group-hover:scale-110 transition-transform duration-300" />
       </Button>
 
       {/* Chat Widget */}
