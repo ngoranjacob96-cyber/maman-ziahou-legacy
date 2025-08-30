@@ -1,70 +1,8 @@
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram, MessageCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { supabase } from '@/integrations/supabase/client';
-import { useToast } from '@/hooks/use-toast';
-import { useState } from 'react';
-
-const contactFormSchema = z.object({
-  firstName: z.string().min(2, "Le prénom doit contenir au moins 2 caractères"),
-  lastName: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
-  email: z.string().email("Veuillez saisir une adresse email valide"),
-  phone: z.string().optional(),
-  subject: z.string().min(5, "Le sujet doit contenir au moins 5 caractères"),
-  message: z.string().min(10, "Le message doit contenir au moins 10 caractères"),
-});
-
-type ContactFormData = z.infer<typeof contactFormSchema>;
 
 const ContactSection = () => {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  const form = useForm<ContactFormData>({
-    resolver: zodResolver(contactFormSchema),
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-    },
-  });
-
-  const onSubmit = async (data: ContactFormData) => {
-    setIsSubmitting(true);
-    try {
-      const { error } = await supabase.functions.invoke('send-contact-email', {
-        body: data,
-      });
-
-      if (error) {
-        throw error;
-      }
-
-      toast({
-        title: "Message envoyé avec succès!",
-        description: "Nous vous répondrons dans les plus brefs délais. Que Dieu vous bénisse!",
-      });
-
-      form.reset();
-    } catch (error) {
-      console.error('Error sending contact form:', error);
-      toast({
-        title: "Erreur lors de l'envoi",
-        description: "Une erreur s'est produite. Veuillez réessayer ou nous contacter directement.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
   const contactInfo = [
     {
       icon: Phone,
@@ -131,7 +69,7 @@ const ContactSection = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid lg:grid-cols-1 gap-16">
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
@@ -215,123 +153,6 @@ const ContactSection = () => {
                   </CardContent>
                 </Card>
               </div>
-            </div>
-
-            {/* Contact Form */}
-            <div>
-              <Card className="bg-background/80 backdrop-blur-sm border-primary/20 shadow-card">
-                <CardHeader>
-                  <CardTitle className="font-script text-2xl text-primary">
-                    Envoyez-nous un Message
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="font-sans text-sm font-medium text-foreground mb-2 block">
-                          Prénom
-                        </label>
-                        <Input 
-                          {...form.register("firstName")}
-                          className="border-primary/20 focus:border-primary" 
-                        />
-                        {form.formState.errors.firstName && (
-                          <p className="text-destructive text-xs mt-1">
-                            {form.formState.errors.firstName.message}
-                          </p>
-                        )}
-                      </div>
-                      <div>
-                        <label className="font-sans text-sm font-medium text-foreground mb-2 block">
-                          Nom
-                        </label>
-                        <Input 
-                          {...form.register("lastName")}
-                          className="border-primary/20 focus:border-primary" 
-                        />
-                        {form.formState.errors.lastName && (
-                          <p className="text-destructive text-xs mt-1">
-                            {form.formState.errors.lastName.message}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <label className="font-sans text-sm font-medium text-foreground mb-2 block">
-                        Email
-                      </label>
-                      <Input 
-                        type="email" 
-                        {...form.register("email")}
-                        className="border-primary/20 focus:border-primary" 
-                      />
-                      {form.formState.errors.email && (
-                        <p className="text-destructive text-xs mt-1">
-                          {form.formState.errors.email.message}
-                        </p>
-                      )}
-                    </div>
-                    
-                    <div>
-                      <label className="font-sans text-sm font-medium text-foreground mb-2 block">
-                        Téléphone (optionnel)
-                      </label>
-                      <Input 
-                        type="tel" 
-                        {...form.register("phone")}
-                        className="border-primary/20 focus:border-primary" 
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="font-sans text-sm font-medium text-foreground mb-2 block">
-                        Sujet
-                      </label>
-                      <Input 
-                        {...form.register("subject")}
-                        className="border-primary/20 focus:border-primary" 
-                      />
-                      {form.formState.errors.subject && (
-                        <p className="text-destructive text-xs mt-1">
-                          {form.formState.errors.subject.message}
-                        </p>
-                      )}
-                    </div>
-                    
-                    <div>
-                      <label className="font-sans text-sm font-medium text-foreground mb-2 block">
-                        Message
-                      </label>
-                      <Textarea 
-                        rows={5}
-                        {...form.register("message")}
-                        className="border-primary/20 focus:border-primary resize-none"
-                        placeholder="Partagez votre demande de prière, question ou témoignage..."
-                      />
-                      {form.formState.errors.message && (
-                        <p className="text-destructive text-xs mt-1">
-                          {form.formState.errors.message.message}
-                        </p>
-                      )}
-                    </div>
-                    
-                    <Button 
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full font-sans bg-primary text-primary-foreground hover:bg-primary-glow shadow-golden"
-                    >
-                      {isSubmitting ? "Envoi en cours..." : "Envoyer le Message"}
-                    </Button>
-                  </form>
-                  
-                  <p className="font-sans text-xs text-muted-foreground text-center">
-                    Nous vous répondrons dans les plus brefs délais. 
-                    Que Dieu vous bénisse !
-                  </p>
-                </CardContent>
-              </Card>
             </div>
           </div>
 

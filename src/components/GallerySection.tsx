@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Play, Clock, Eye, X } from 'lucide-react';
+import { Play, Clock, Eye, X, Volume2, Pause, Download } from 'lucide-react';
 
 const GallerySection = () => {
   const [filter, setFilter] = useState('tous');
@@ -29,10 +29,27 @@ const GallerySection = () => {
     videoUrl: string;
   };
 
-  type GalleryItem = ImageItem | VideoItem;
+  type AudioItem = {
+    type: 'audio';
+    category: string;
+    title: string;
+    description: string;
+    audioUrl: string;
+    duration: string;
+    date: string;
+  };
+
+  type GalleryItem = ImageItem | VideoItem | AudioItem;
 
   // Données de la galerie - Images réelles du ministère
   const galleryImages: ImageItem[] = [
+    {
+      type: 'image',
+      category: 'cultes',
+      title: 'Maman ZIAHOU en Prédication',
+      description: 'Message inspirant avec passion - 24.08.2025',
+      image: '/lovable-uploads/43c305b1-85ed-4ced-8912-03b915c8c4f8.png'
+    },
     {
       type: 'image',
       category: 'cultes',
@@ -97,15 +114,47 @@ const GallerySection = () => {
     }
   ];
 
+  // Données de la galerie - Audios de prédication
+  const galleryAudios: AudioItem[] = [
+    {
+      type: 'audio',
+      category: 'audios',
+      title: 'La Force de la Prière',
+      description: 'Enseignement puissant sur l\'importance de la prière constante',
+      audioUrl: '#', // Placeholder - vous pouvez ajouter des liens audio réels
+      duration: '28:45',
+      date: '15.08.2025'
+    },
+    {
+      type: 'audio',
+      category: 'audios',
+      title: 'Vivre dans la Bénédiction',
+      description: 'Message inspirant sur les promesses de Dieu pour nos vies',
+      audioUrl: '#',
+      duration: '35:12',
+      date: '08.08.2025'
+    },
+    {
+      type: 'audio',
+      category: 'audios',
+      title: 'La Résurrection et l\'Espoir',
+      description: 'Prédication sur la puissance de la résurrection du Christ',
+      audioUrl: '#',
+      duration: '42:30',
+      date: '01.08.2025'
+    }
+  ];
+
   // Toutes les données combinées
-  const allGalleryItems: GalleryItem[] = [...galleryImages, ...galleryVideos];
+  const allGalleryItems: GalleryItem[] = [...galleryImages, ...galleryVideos, ...galleryAudios];
 
   // Catégories disponibles
   const categories = [
     { id: 'tous', label: 'Tous' },
     { id: 'cultes', label: 'Cultes' },
     { id: 'communaute', label: 'Communauté' },
-    { id: 'videos', label: 'Vidéos' }
+    { id: 'videos', label: 'Vidéos' },
+    { id: 'audios', label: 'Audios' }
   ];
 
   // Filtrage des éléments
@@ -194,6 +243,54 @@ const GallerySection = () => {
     </Card>
   );
 
+  // Composant pour rendre un élément audio
+  const renderAudioItem = (item: AudioItem, index: number) => (
+    <Card 
+      key={index} 
+      className="group overflow-hidden hover:shadow-card transition-all duration-300 bg-background/80 backdrop-blur-sm border-primary/10"
+    >
+      <div className="p-6">
+        <div className="flex items-center space-x-4">
+          <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center flex-shrink-0">
+            <Volume2 className="h-8 w-8 text-primary-foreground" />
+          </div>
+          <div className="flex-1">
+            <h4 className="font-script text-lg font-semibold text-foreground mb-1">{item.title}</h4>
+            <p className="font-sans text-sm text-muted-foreground mb-2">{item.description}</p>
+            <div className="flex items-center space-x-4 text-xs text-muted-foreground">
+              <span className="flex items-center space-x-1">
+                <Clock className="h-3 w-3" />
+                <span>{item.duration}</span>
+              </span>
+              <span>{item.date}</span>
+            </div>
+          </div>
+        </div>
+        
+        {/* Audio Player */}
+        <div className="mt-4">
+          <audio 
+            controls 
+            className="w-full h-10"
+            preload="metadata"
+          >
+            <source src={item.audioUrl} type="audio/mpeg" />
+            Votre navigateur ne supporte pas l'audio HTML5.
+          </audio>
+        </div>
+        
+        {/* Action Buttons */}
+        <div className="flex justify-between items-center mt-4">
+          <Button variant="ghost" size="sm" className="text-primary hover:text-primary-foreground hover:bg-primary">
+            <Download className="h-4 w-4 mr-2" />
+            Télécharger
+          </Button>
+          <span className="text-xs text-muted-foreground">Audio • MP3</span>
+        </div>
+      </div>
+    </Card>
+  );
+
   return (
     <section id="galerie" className="py-20 bg-gradient-card">
       <div className="container mx-auto px-6">
@@ -203,12 +300,12 @@ const GallerySection = () => {
             <h2 className="font-script text-4xl md:text-6xl font-bold text-foreground mb-4">
               Galerie{' '}
               <span className="text-primary font-bold text-shadow-lg bg-white/90 px-2 py-1 rounded">
-                Photos & Vidéos
+                Médias
               </span>
             </h2>
             <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
             <p className="font-sans text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Découvrez les moments forts de notre ministère à travers ces images et vidéos inspirantes
+              Découvrez les moments forts de notre ministère à travers ces images, vidéos et audios inspirants
             </p>
           </div>
 
@@ -232,10 +329,31 @@ const GallerySection = () => {
 
           {/* Gallery Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredItems.map((item, index) => 
-              item.type === 'video' ? renderVideoItem(item, index) : renderImageItem(item, index)
-            )}
+            {filteredItems.map((item, index) => {
+              if (item.type === 'video') return renderVideoItem(item, index);
+              if (item.type === 'audio') return renderAudioItem(item, index);
+              return renderImageItem(item, index);
+            })}
           </div>
+
+          {/* Audio Section - Always visible */}
+          {(filter === 'tous' || filter === 'audios') && (
+            <div className="mt-20">
+              <div className="text-center mb-12">
+                <h3 className="font-script text-3xl md:text-4xl font-bold text-primary mb-4">
+                  Nos Audios
+                </h3>
+                <div className="w-16 h-1 bg-primary mx-auto mb-4"></div>
+                <p className="font-sans text-muted-foreground max-w-xl mx-auto">
+                  Écoutez les enseignements et prédications de Maman ZIAHOU
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
+                {galleryAudios.map((item, index) => renderAudioItem(item, index))}
+              </div>
+            </div>
+          )}
 
           {/* Load More Button */}
           <div className="text-center mt-12">
@@ -284,7 +402,7 @@ const GallerySection = () => {
                   <div className="flex-1 p-6">
                     <div className="w-full h-full rounded-lg overflow-hidden">
                       <iframe
-                        src={getYouTubeEmbedUrl(selectedItem.videoUrl)}
+                        src={getYouTubeEmbedUrl((selectedItem as VideoItem).videoUrl)}
                         title={selectedItem.title}
                         className="w-full h-full"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
