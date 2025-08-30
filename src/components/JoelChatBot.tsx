@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, Send, X, User, Bot, Image, Video, Sparkles } from 'lucide-react';
+import { MessageCircle, Send, X, User, Bot, Image, Video, Sparkles, Volume2, Settings, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -7,7 +7,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 
 interface MediaItem {
-  type: 'image' | 'video';
+  type: 'image' | 'video' | 'audio';
   url: string;
   title: string;
   description?: string;
@@ -20,7 +20,7 @@ interface Message {
   isUser: boolean;
   timestamp: Date;
   media?: {
-    type: 'image' | 'video' | 'gallery';
+    type: 'image' | 'video' | 'audio' | 'gallery';
     items: MediaItem[];
   };
 }
@@ -132,7 +132,7 @@ const JoelChatBot = () => {
                   )}
                 </div>
               </div>
-            ) : (
+            ) : item.type === 'video' ? (
               <div>
                 <div className="relative">
                   <div className="w-full h-40 bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
@@ -160,6 +160,30 @@ const JoelChatBot = () => {
                   </a>
                 </div>
               </div>
+            ) : (
+              // Audio content
+              <div className="p-3">
+                <div className="flex items-center space-x-3 mb-3">
+                  <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/5 rounded-full flex items-center justify-center">
+                    <Volume2 className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-foreground">{item.title}</p>
+                    {item.description && (
+                      <p className="text-xs text-muted-foreground">{item.description}</p>
+                    )}
+                  </div>
+                </div>
+                <a 
+                  href={item.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-xs text-primary hover:text-primary/80 transition-colors"
+                >
+                  <Volume2 className="h-3 w-3 mr-1" />
+                  Écouter l'audio →
+                </a>
+              </div>
             )}
           </div>
         ))}
@@ -169,17 +193,14 @@ const JoelChatBot = () => {
 
   return (
     <>
-      {/* Chat Button */}
+      {/* Chat Button - Sans nom d'affichage */}
       <Button
         onClick={() => setIsOpen(true)}
         className="fixed bottom-6 right-6 z-50 rounded-full w-16 h-16 shadow-2xl bg-gradient-to-r from-primary to-primary-glow text-primary-foreground hover:shadow-3xl hover:scale-110 transition-all duration-300 group"
         size="icon"
-        aria-label="Parler à Joël"
+        aria-label="Ouvrir le chat"
       >
-        <div className="flex flex-col items-center">
-          <Sparkles className="h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
-          <span className="text-xs font-semibold">Joël</span>
-        </div>
+        <Sparkles className="h-6 w-6 group-hover:rotate-12 transition-transform duration-300" />
       </Button>
 
       {/* Chat Widget */}
@@ -227,6 +248,15 @@ const JoelChatBot = () => {
               >
                 <Video className="h-3 w-3 mr-1" />
                 Vidéos
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => quickAction('Montre-moi des audios de prédication')}
+                className="text-xs h-8 rounded-full hover:bg-primary/10"
+              >
+                <Volume2 className="h-3 w-3 mr-1" />
+                Audios
               </Button>
               <Button
                 size="sm"
@@ -299,6 +329,15 @@ const JoelChatBot = () => {
                 disabled={isLoading}
                 className="flex-1 rounded-full border-2 focus:border-primary/50 bg-background/80"
               />
+              <Button
+                onClick={() => quickAction('J\'aimerais actualiser ma clé API OpenAI')}
+                size="icon"
+                variant="outline"
+                className="rounded-full border-primary/30 hover:bg-primary/10"
+                title="Actualiser la clé API OpenAI"
+              >
+                <RefreshCw className="h-4 w-4" />
+              </Button>
               <Button
                 onClick={sendMessage}
                 disabled={isLoading || !inputMessage.trim()}

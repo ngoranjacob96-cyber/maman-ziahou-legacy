@@ -11,7 +11,7 @@ const corsHeaders = {
 function getFallbackResponse(message: string): string {
   const lowerMessage = message.toLowerCase();
   
-  // Demandes de médias (images/vidéos)
+  // Demandes de médias (images/vidéos/audios)
   if (lowerMessage.includes('photo') || lowerMessage.includes('image') || lowerMessage.includes('montre') || lowerMessage.includes('voir')) {
     return JSON.stringify({
       response: "Voici quelques photos de notre église ! 📸",
@@ -29,6 +29,12 @@ function getFallbackResponse(message: string): string {
             url: "/lovable-uploads/896c6414-6925-4c58-884f-c7ec1ca1e505.png",
             title: "Service de Louange",
             description: "Maman ZIAHOU dirigeant l'adoration"
+          },
+          {
+            type: "image",
+            url: "/lovable-uploads/4a253aaa-226f-43d3-9de7-b7bc6558fd47.png",
+            title: "Moment de Prière Collective",
+            description: "Congrégation en méditation - 24.08.2025"
           }
         ]
       }
@@ -54,6 +60,36 @@ function getFallbackResponse(message: string): string {
             title: "Témoignage de Guérison",
             description: "Témoignage touchant",
             duration: "32:15"
+          },
+          {
+            type: "video",
+            url: "https://youtu.be/_J7BfHIaB9M",
+            title: "Culte de Louange Spécial",
+            description: "Moments d'adoration exceptionnels",
+            duration: "1:23:45"
+          }
+        ]
+      }
+    });
+  }
+
+  if (lowerMessage.includes('audio') || lowerMessage.includes('écouter') || lowerMessage.includes('soundcloud')) {
+    return JSON.stringify({
+      response: "Voici nos audios de prédication ! 🎵",
+      media: {
+        type: "gallery",
+        items: [
+          {
+            type: "audio",
+            url: "https://soundcloud.com/ngoran-jacob/culte-dauto-delivrance-03082022-eereb_256k-1",
+            title: "Culte d'Auto Délivrance",
+            description: "Service spirituel puissant - E.E.R.E.B"
+          },
+          {
+            type: "audio",
+            url: "https://soundcloud.com/ngoran-jacob/culte-de-louange-et-dadoration-14082022-eereb_256k-2",
+            title: "Culte de Louange et d'Adoration",
+            description: "Moments de louange inspirants - E.E.R.E.B"
           }
         ]
       }
@@ -100,6 +136,11 @@ function getFallbackResponse(message: string): string {
     return responses[Math.floor(Math.random() * responses.length)];
   }
   
+  // Actualisation de clé API
+  if (lowerMessage.includes('clé api') || lowerMessage.includes('openai') || lowerMessage.includes('actualiser') || lowerMessage.includes('api key')) {
+    return "Pour actualiser votre clé API OpenAI, contactez l'administrateur au 0700818398. Cela permettra d'améliorer mes réponses ! 🔧";
+  }
+
   // Prière et spiritualité
   if (lowerMessage.includes('prière') || lowerMessage.includes('prier') || lowerMessage.includes('besoin') || lowerMessage.includes('aide')) {
     const responses = [
@@ -190,25 +231,33 @@ IMAGES:
 - "/lovable-uploads/896c6414-6925-4c58-884f-c7ec1ca1e505.png" : Service de Louange dirigé par Maman ZIAHOU
 - "/lovable-uploads/dab1fc28-bcdb-4044-817f-bd6f44e052c9.png" : Fidèles en Méditation avec la Parole
 
+AUDIOS SOUNDCLOUD:
+- "https://soundcloud.com/ngoran-jacob/culte-dauto-delivrance-03082022-eereb_256k-1" : Culte d'Auto Délivrance (03.08.2022)
+- "https://soundcloud.com/ngoran-jacob/culte-de-louange-et-dadoration-14082022-eereb_256k-2" : Culte de Louange et d'Adoration (14.08.2022)
+
 VIDÉOS YOUTUBE:
 - "https://youtu.be/xMHSxReg1OI" : Prédication "La Foi qui Transforme" (45:32) - 12.5K vues
 - "https://youtu.be/I_UfgyA5erc" : Témoignage Miracle de Guérison (32:15) - 8.2K vues  
 - "https://youtu.be/_J7BfHIaB9M" : Culte de Louange Spécial (1:23:45) - 15.7K vues
 
 FONCTIONNALITÉ MÉDIAS :
-Quand l'utilisateur demande des images/vidéos/médias, tu DOIS répondre avec le format JSON suivant :
+Quand l'utilisateur demande des images/vidéos/audios/médias, tu DOIS répondre avec le format JSON suivant :
 {
   "response": "Voici [description]",
   "media": {
-    "type": "image|video|gallery", 
+    "type": "image|video|audio|gallery", 
     "items": [
       {"type": "image", "url": "/lovable-uploads/...", "title": "...", "description": "..."},
-      {"type": "video", "url": "https://youtu.be/...", "title": "...", "description": "...", "duration": "..."}
+      {"type": "video", "url": "https://youtu.be/...", "title": "...", "description": "...", "duration": "..."},
+      {"type": "audio", "url": "https://soundcloud.com/...", "title": "...", "description": "..."}
     ]
   }
 }
 
-Exemples de demandes médias : "montre-moi des images", "vidéos de prédication", "photos de Maman ZIAHOU", etc.
+ACTUALISATION API :
+Si l'utilisateur demande l'actualisation de la clé API OpenAI, réponds : "Pour actualiser votre clé API OpenAI, contactez l'administrateur au 0700818398. Cela permettra d'améliorer mes réponses ! 🔧"
+
+Exemples de demandes médias : "montre-moi des images", "vidéos de prédication", "photos de Maman ZIAHOU", "audios de louange", etc.
 
 Aide avec les horaires, programmes, contact, conseil spirituel ET affichage des médias.`
               },
