@@ -81,7 +81,7 @@ export default function PrayerRequestForm() {
   const isSubmitting = form.formState.isSubmitting;
 
   return (
-    <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+    <section id="demande-priere" className="py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4 font-sans">

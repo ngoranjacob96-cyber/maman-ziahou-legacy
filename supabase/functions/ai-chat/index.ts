@@ -136,19 +136,14 @@ function getFallbackResponse(message: string): string {
     return responses[Math.floor(Math.random() * responses.length)];
   }
   
+  // Demande de prière - redirection vers formulaire
+  if (lowerMessage.includes('demande de prière') || lowerMessage.includes('prier pour moi') || lowerMessage.includes('besoin de prière')) {
+    return "Je vous redirige vers notre formulaire de demande de prière. Notre équipe pastorale priera pour vous avec amour ! 🙏";
+  }
+
   // Actualisation de clé API
   if (lowerMessage.includes('clé api') || lowerMessage.includes('openai') || lowerMessage.includes('actualiser') || lowerMessage.includes('api key')) {
     return "Pour actualiser votre clé API OpenAI, contactez l'administrateur au 0700818398. Cela permettra d'améliorer mes réponses ! 🔧";
-  }
-
-  // Prière et spiritualité
-  if (lowerMessage.includes('prière') || lowerMessage.includes('prier') || lowerMessage.includes('besoin') || lowerMessage.includes('aide')) {
-    const responses = [
-      "Je prie pour vous ! Dieu vous aime et a un plan merveilleux pour votre vie 🙏",
-      "Que Dieu vous bénisse et vous donne Sa paix. Nous prierons pour vous à l'église !",
-      "Dieu entend vos prières. Venez nous voir, nous prierons ensemble pour vos besoins ❤️"
-    ];
-    return responses[Math.floor(Math.random() * responses.length)];
   }
   
   // Questions sur l'église

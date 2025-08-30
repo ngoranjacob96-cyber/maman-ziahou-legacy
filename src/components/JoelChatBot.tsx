@@ -110,6 +110,17 @@ const JoelChatBot = () => {
   };
 
   const quickAction = (message: string) => {
+    // Si c'est une demande de prière, fermer le chat et rediriger
+    if (message.includes('demande de prière') || message.includes('prier pour moi')) {
+      setIsOpen(false);
+      setTimeout(() => {
+        document.getElementById('demande-priere')?.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 300);
+      return;
+    }
     setInputMessage(message);
   };
 
@@ -248,6 +259,14 @@ const JoelChatBot = () => {
               >
                 <Video className="h-3 w-3 mr-1" />
                 Vidéos
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => quickAction('Je veux faire une demande de prière')}
+                className="text-xs h-8 rounded-full hover:bg-primary/10"
+              >
+                🙏 Prière
               </Button>
               <Button
                 size="sm"
