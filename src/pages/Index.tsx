@@ -8,7 +8,7 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import FAQSection from '@/components/FAQSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
-
+import JoelChatBot from '@/components/JoelChatBot';
 import WhatsAppButton from '@/components/WhatsAppButton';
 
 const Index = () => {
@@ -24,7 +24,7 @@ const Index = () => {
       <FAQSection />
       <ContactSection />
       <Footer />
-      
+      <JoelChatBot />
       <WhatsAppButton />
     </main>
   );
