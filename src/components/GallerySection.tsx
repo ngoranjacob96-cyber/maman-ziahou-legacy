@@ -115,10 +115,38 @@ const GallerySection = () => {
   ];
 
   // Données de la galerie - Audios de prédication
-  const galleryAudios: AudioItem[] = [];
+  const galleryAudios: AudioItem[] = [
+    {
+      type: 'audio',
+      category: 'audios',
+      title: 'La Force de la Prière',
+      description: 'Enseignement puissant sur l\'importance de la prière constante',
+      audioUrl: '#', // Placeholder - vous pouvez ajouter des liens audio réels
+      duration: '28:45',
+      date: '15.08.2025'
+    },
+    {
+      type: 'audio',
+      category: 'audios',
+      title: 'Vivre dans la Bénédiction',
+      description: 'Message inspirant sur les promesses de Dieu pour nos vies',
+      audioUrl: '#',
+      duration: '35:12',
+      date: '08.08.2025'
+    },
+    {
+      type: 'audio',
+      category: 'audios',
+      title: 'La Résurrection et l\'Espoir',
+      description: 'Prédication sur la puissance de la résurrection du Christ',
+      audioUrl: '#',
+      duration: '42:30',
+      date: '01.08.2025'
+    }
+  ];
 
-  // Toutes les données combinées
-  const allGalleryItems: GalleryItem[] = [...galleryImages, ...galleryVideos, ...galleryAudios];
+  // Toutes les données combinées (sans les audios pour la grille principale)
+  const allGalleryItems: GalleryItem[] = [...galleryImages, ...galleryVideos];
 
   // Catégories disponibles
   const categories = [
