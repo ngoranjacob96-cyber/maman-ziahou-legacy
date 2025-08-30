@@ -63,22 +63,25 @@ const ChatWidget = () => {
       }
 
       // Try to parse the response as JSON first (for media content)
-      let responseData;
+      let responseText;
       let mediaData = null;
       
       try {
-        responseData = JSON.parse(data.response);
-        if (responseData.media) {
-          mediaData = responseData.media;
+        const parsedResponse = JSON.parse(data.response);
+        if (parsedResponse.response && parsedResponse.media) {
+          responseText = parsedResponse.response;
+          mediaData = parsedResponse.media;
+        } else {
+          responseText = data.response;
         }
       } catch {
         // If it's not JSON, use as regular text
-        responseData = { response: data.response };
+        responseText = data.response;
       }
 
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: responseData.response || data.response,
+        text: responseText,
         isUser: false,
         timestamp: new Date(),
         ...(mediaData && { media: mediaData })

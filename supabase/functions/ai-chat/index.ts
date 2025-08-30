@@ -11,6 +11,55 @@ const corsHeaders = {
 function getFallbackResponse(message: string): string {
   const lowerMessage = message.toLowerCase();
   
+  // Demandes de médias (images/vidéos)
+  if (lowerMessage.includes('photo') || lowerMessage.includes('image') || lowerMessage.includes('montre') || lowerMessage.includes('voir')) {
+    return JSON.stringify({
+      response: "Voici quelques photos de notre église ! 📸",
+      media: {
+        type: "gallery",
+        items: [
+          {
+            type: "image",
+            url: "/lovable-uploads/d99e0a7c-4b2b-488c-b21d-3d0fb689a793.png",
+            title: "Maman ZIAHOU en Prédication",
+            description: "Culte de louange - 03.08.2025"
+          },
+          {
+            type: "image", 
+            url: "/lovable-uploads/896c6414-6925-4c58-884f-c7ec1ca1e505.png",
+            title: "Service de Louange",
+            description: "Maman ZIAHOU dirigeant l'adoration"
+          }
+        ]
+      }
+    });
+  }
+  
+  if (lowerMessage.includes('vidéo') || lowerMessage.includes('prédication') || lowerMessage.includes('youtube')) {
+    return JSON.stringify({
+      response: "Voici nos vidéos de prédication ! 🎥",
+      media: {
+        type: "gallery",
+        items: [
+          {
+            type: "video",
+            url: "https://youtu.be/xMHSxReg1OI",
+            title: "La Foi qui Transforme",
+            description: "Message puissant de Maman ZIAHOU",
+            duration: "45:32"
+          },
+          {
+            type: "video",
+            url: "https://youtu.be/I_UfgyA5erc", 
+            title: "Témoignage de Guérison",
+            description: "Témoignage touchant",
+            duration: "32:15"
+          }
+        ]
+      }
+    });
+  }
+  
   // Réponses variées pour les horaires
   if (lowerMessage.includes('horaire') || lowerMessage.includes('culte') || lowerMessage.includes('service') || lowerMessage.includes('quand')) {
     const responses = [
