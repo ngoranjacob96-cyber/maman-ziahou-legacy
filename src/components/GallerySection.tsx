@@ -45,35 +45,35 @@ const GallerySection = () => {
   const galleryImages: ImageItem[] = [
     {
       type: 'image',
-      category: 'cultes',
+      category: 'photos',
       title: 'Maman ZIAHOU en Prédication',
       description: 'Message inspirant avec passion - 24.08.2025',
       image: '/lovable-uploads/43c305b1-85ed-4ced-8912-03b915c8c4f8.png'
     },
     {
       type: 'image',
-      category: 'cultes',
+      category: 'photos',
       title: 'Maman ZIAHOU en Prédication',
       description: 'Culte de louange et d\'adoration - 03.08.2025',
       image: '/lovable-uploads/d99e0a7c-4b2b-488c-b21d-3d0fb689a793.png'
     },
     {
       type: 'image',
-      category: 'cultes',
+      category: 'photos',
       title: 'Moment de Prière Collective',
       description: 'Congrégation en méditation et prière - 24.08.2025',
       image: '/lovable-uploads/4a253aaa-226f-43d3-9de7-b7bc6558fd47.png'
     },
     {
       type: 'image',
-      category: 'cultes',
+      category: 'photos',
       title: 'Service de Louange',
       description: 'Maman ZIAHOU dirigeant l\'adoration',
       image: '/lovable-uploads/896c6414-6925-4c58-884f-c7ec1ca1e505.png'
     },
     {
       type: 'image',
-      category: 'communaute',
+      category: 'photos',
       title: 'Fidèles en Méditation',
       description: 'Moments de recueillement avec la Parole',
       image: '/lovable-uploads/dab1fc28-bcdb-4044-817f-bd6f44e052c9.png'
@@ -142,8 +142,7 @@ const GallerySection = () => {
   // Catégories disponibles (sans audios car ils ont leur propre section)
   const categories = [
     { id: 'tous', label: 'Tous' },
-    { id: 'cultes', label: 'Cultes' },
-    { id: 'communaute', label: 'Communauté' },
+    { id: 'photos', label: 'Photos' },
     { id: 'videos', label: 'Vidéos' }
   ];
 
