@@ -148,13 +148,12 @@ const GallerySection = () => {
   // Toutes les données combinées (sans les audios pour la grille principale)
   const allGalleryItems: GalleryItem[] = [...galleryImages, ...galleryVideos];
 
-  // Catégories disponibles
+  // Catégories disponibles (sans audios car ils ont leur propre section)
   const categories = [
     { id: 'tous', label: 'Tous' },
     { id: 'cultes', label: 'Cultes' },
     { id: 'communaute', label: 'Communauté' },
-    { id: 'videos', label: 'Vidéos' },
-    { id: 'audios', label: 'Audios' }
+    { id: 'videos', label: 'Vidéos' }
   ];
 
   // Filtrage des éléments
@@ -336,24 +335,22 @@ const GallerySection = () => {
             })}
           </div>
 
-          {/* Audio Section - Always visible */}
-          {(filter === 'tous' || filter === 'audios') && (
-            <div className="mt-20">
-              <div className="text-center mb-12">
-                <h3 className="font-script text-3xl md:text-4xl font-bold text-primary mb-4">
-                  Nos Audios
-                </h3>
-                <div className="w-16 h-1 bg-primary mx-auto mb-4"></div>
-                <p className="font-sans text-muted-foreground max-w-xl mx-auto">
-                  Écoutez les enseignements et prédications de Maman ZIAHOU
-                </p>
-              </div>
-              
-              <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
-                {galleryAudios.map((item, index) => renderAudioItem(item, index))}
-              </div>
+          {/* Audio Section - Toujours visible */}
+          <div className="mt-20">
+            <div className="text-center mb-12">
+              <h3 className="font-script text-3xl md:text-4xl font-bold text-primary mb-4">
+                Nos Audios
+              </h3>
+              <div className="w-16 h-1 bg-primary mx-auto mb-4"></div>
+              <p className="font-sans text-muted-foreground max-w-xl mx-auto">
+                Écoutez les enseignements et prédications de Maman ZIAHOU
+              </p>
             </div>
-          )}
+            
+            <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
+              {galleryAudios.map((item, index) => renderAudioItem(item, index))}
+            </div>
+          </div>
 
           {/* Load More Button */}
           <div className="text-center mt-12">
