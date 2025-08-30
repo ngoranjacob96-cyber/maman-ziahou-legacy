@@ -1,16 +1,28 @@
 import React, { useState } from 'react';
-import { MessageCircle, Send, X, User, Bot } from 'lucide-react';
+import { MessageCircle, Send, X, User, Bot, Image, Video, Camera } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useToast } from '@/components/ui/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 
+interface MediaItem {
+  type: 'image' | 'video';
+  url: string;
+  title: string;
+  description?: string;
+  duration?: string;
+}
+
 interface Message {
   id: string;
   text: string;
   isUser: boolean;
   timestamp: Date;
+  media?: {
+    type: 'image' | 'video' | 'gallery';
+    items: MediaItem[];
+  };
 }
 
 const ChatWidget = () => {
@@ -18,7 +30,7 @@ const ChatWidget = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Bonjour ! Je suis l\'assistant virtuel de l\'E.E.R.E.B. Comment puis-je vous aider aujourd\'hui ?',
+      text: 'Salut ! Moi c\'est Joël, votre assistant E.E.R.E.B 😊 Je peux vous aider avec les horaires, infos sur Maman ZIAHOU, ou vous montrer nos vidéos et photos ! Que puis-je faire pour vous ?',
       isUser: false,
       timestamp: new Date()
     }
@@ -50,11 +62,26 @@ const ChatWidget = () => {
         throw error;
       }
 
+      // Try to parse the response as JSON first (for media content)
+      let responseData;
+      let mediaData = null;
+      
+      try {
+        responseData = JSON.parse(data.response);
+        if (responseData.media) {
+          mediaData = responseData.media;
+        }
+      } catch {
+        // If it's not JSON, use as regular text
+        responseData = { response: data.response };
+      }
+
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: data.response,
+        text: responseData.response || data.response,
         isUser: false,
-        timestamp: new Date()
+        timestamp: new Date(),
+        ...(mediaData && { media: mediaData })
       };
 
       setMessages(prev => [...prev, aiMessage]);
@@ -70,11 +97,62 @@ const ChatWidget = () => {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      sendMessage();
-    }
+  const quickMediaMessage = (type: 'images' | 'videos') => {
+    const message = type === 'images' ? 'Montre-moi des photos de l\'église' : 'Montre-moi les vidéos de prédication';
+    setInputMessage(message);
+  };
+
+  const renderMediaContent = (media: MediaItem[]) => {
+    return (
+      <div className="mt-2 space-y-2">
+        {media.map((item, index) => (
+          <div key={index} className="border border-border rounded-lg overflow-hidden">
+            {item.type === 'image' ? (
+              <div>
+                <img 
+                  src={item.url} 
+                  alt={item.title}
+                  className="w-full h-32 object-cover"
+                />
+                <div className="p-2">
+                  <p className="text-xs font-semibold">{item.title}</p>
+                  {item.description && (
+                    <p className="text-xs text-muted-foreground">{item.description}</p>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div>
+                <div className="relative">
+                  <div className="w-full h-32 bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+                    <Video className="h-8 w-8 text-primary" />
+                  </div>
+                  {item.duration && (
+                    <span className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-1 rounded">
+                      {item.duration}
+                    </span>
+                  )}
+                </div>
+                <div className="p-2">
+                  <p className="text-xs font-semibold">{item.title}</p>
+                  {item.description && (
+                    <p className="text-xs text-muted-foreground">{item.description}</p>
+                  )}
+                  <a 
+                    href={item.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-xs text-primary hover:underline"
+                  >
+                    Voir la vidéo →
+                  </a>
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    );
   };
 
   return (
@@ -91,12 +169,15 @@ const ChatWidget = () => {
 
       {/* Chat Widget */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-80 h-96 bg-background border border-border rounded-lg shadow-xl flex flex-col">
+        <div className="fixed bottom-6 right-6 z-50 w-96 h-[500px] bg-background border border-border rounded-lg shadow-xl flex flex-col">
           {/* Header */}
           <div className="bg-primary text-primary-foreground p-4 rounded-t-lg flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <Bot className="h-5 w-5" />
-              <span className="font-semibold">Assistant E.E.R.E.B</span>
+              <div>
+                <span className="font-semibold">Joël • E.E.R.E.B</span>
+                <p className="text-xs opacity-90">Assistant intelligent</p>
+              </div>
             </div>
             <Button
               onClick={() => setIsOpen(false)}
@@ -108,6 +189,39 @@ const ChatWidget = () => {
             </Button>
           </div>
 
+          {/* Quick Actions */}
+          <div className="p-3 bg-secondary/20 border-b border-border">
+            <div className="flex space-x-2">
+              <Button
+                size="sm" 
+                variant="outline"
+                onClick={() => quickMediaMessage('images')}
+                className="text-xs h-7"
+              >
+                <Image className="h-3 w-3 mr-1" />
+                Photos
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => quickMediaMessage('videos')}
+                className="text-xs h-7"
+              >
+                <Video className="h-3 w-3 mr-1" />
+                Vidéos
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => setInputMessage('Horaires des cultes')}
+                className="text-xs h-7"
+              >
+                <Camera className="h-3 w-3 mr-1" />
+                Horaires
+              </Button>
+            </div>
+          </div>
+
           {/* Messages */}
           <ScrollArea className="flex-1 p-4">
             <div className="space-y-4">
@@ -117,15 +231,20 @@ const ChatWidget = () => {
                   className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[80%] p-3 rounded-lg flex items-start space-x-2 ${
+                    className={`max-w-[85%] p-3 rounded-lg ${
                       message.isUser
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-muted text-muted-foreground'
+                        ? 'bg-primary text-primary-foreground rounded-br-sm'
+                        : 'bg-muted text-muted-foreground rounded-bl-sm'
                     }`}
                   >
-                    {!message.isUser && <Bot className="h-4 w-4 mt-1 flex-shrink-0" />}
-                    <span className="text-sm leading-relaxed">{message.text}</span>
-                    {message.isUser && <User className="h-4 w-4 mt-1 flex-shrink-0" />}
+                    <div className="flex items-start space-x-2">
+                      {!message.isUser && <Bot className="h-4 w-4 mt-1 flex-shrink-0" />}
+                      <div className="flex-1">
+                        <span className="text-sm leading-relaxed">{message.text}</span>
+                        {message.media && renderMediaContent(message.media.items)}
+                      </div>
+                      {message.isUser && <User className="h-4 w-4 mt-1 flex-shrink-0" />}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -150,8 +269,13 @@ const ChatWidget = () => {
               <Input
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Tapez votre message..."
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                  }
+                }}
+                placeholder="Posez votre question à Joël..."
                 disabled={isLoading}
                 className="flex-1"
               />
