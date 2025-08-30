@@ -119,29 +119,20 @@ const GallerySection = () => {
     {
       type: 'audio',
       category: 'audios',
-      title: 'La Force de la Prière',
-      description: 'Enseignement puissant sur l\'importance de la prière constante',
-      audioUrl: '#', // Placeholder - vous pouvez ajouter des liens audio réels
-      duration: '28:45',
-      date: '15.08.2025'
+      title: 'Culte d\'Auto Délivrance',
+      description: 'Service spirituel puissant - EEREB 03.08.2022',
+      audioUrl: 'https://soundcloud.com/ngoran-jacob/culte-dauto-delivrance-03082022-eereb_256k-1?in=ngoran-jacob/sets/audio-eereb&si=a5eb0920d34f4e9cb0bfb059892ea8bb&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+      duration: '',
+      date: '03.08.2022'
     },
     {
       type: 'audio',
       category: 'audios',
-      title: 'Vivre dans la Bénédiction',
-      description: 'Message inspirant sur les promesses de Dieu pour nos vies',
-      audioUrl: '#',
-      duration: '35:12',
-      date: '08.08.2025'
-    },
-    {
-      type: 'audio',
-      category: 'audios',
-      title: 'La Résurrection et l\'Espoir',
-      description: 'Prédication sur la puissance de la résurrection du Christ',
-      audioUrl: '#',
-      duration: '42:30',
-      date: '01.08.2025'
+      title: 'Culte de Louange et d\'Adoration',
+      description: 'Moments de louange inspirants - EEREB 14.08.2022',
+      audioUrl: 'https://soundcloud.com/ngoran-jacob/culte-de-louange-et-dadoration-14082022-eereb_256k-2?in=ngoran-jacob/sets/audio-eereb&si=791baa32375b49ed9a2f7bc49be2d450&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+      duration: '',
+      date: '14.08.2022'
     }
   ];
 
@@ -176,6 +167,11 @@ const GallerySection = () => {
   const getYouTubeEmbedUrl = (url: string) => {
     const videoIdMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
     return videoIdMatch ? `https://www.youtube.com/embed/${videoIdMatch[1]}` : url;
+  };
+
+  // Fonction pour convertir SoundCloud URL en embed
+  const getSoundCloudEmbedUrl = (url: string) => {
+    return `https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true`;
   };
 
   // Composant pour rendre un élément image
@@ -266,16 +262,16 @@ const GallerySection = () => {
           </div>
         </div>
         
-        {/* Audio Player */}
+        {/* SoundCloud Player */}
         <div className="mt-4">
-          <audio 
-            controls 
-            className="w-full h-10"
-            preload="metadata"
-          >
-            <source src={item.audioUrl} type="audio/mpeg" />
-            Votre navigateur ne supporte pas l'audio HTML5.
-          </audio>
+          <iframe
+            width="100%"
+            height="166"
+            src={getSoundCloudEmbedUrl(item.audioUrl)}
+            allow="autoplay"
+            title={item.title}
+            className="rounded-lg"
+          ></iframe>
         </div>
         
         {/* Action Buttons */}
