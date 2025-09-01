@@ -9,6 +9,7 @@ const Footer = () => {
     { name: 'Ministère', href: '#ministere' },
     { name: 'Galerie', href: '#galerie' },
     { name: 'Contact', href: '#contact' },
+    { name: 'Mentions Légales', href: '/mentions-legales' },
     { name: 'Admin Prières', href: '/admin/prayers' }
   ];
 
