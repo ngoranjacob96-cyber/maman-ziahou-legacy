@@ -16,18 +16,16 @@ const Index = () => {
   return (
     <main className="min-h-screen">
       <WarningBanner />
-      <div className="pt-16">
-        <Navigation />
-        <HeroSection />
-        <AboutSection />
-        <MinistrySection />
-        <PrayerRequestForm />
-        <GallerySection />
-        <TestimonialsSection />
-        <FAQSection />
-        <ContactSection />
-        <Footer />
-      </div>
+      <Navigation />
+      <HeroSection />
+      <AboutSection />
+      <MinistrySection />
+      <PrayerRequestForm />
+      <GallerySection />
+      <TestimonialsSection />
+      <FAQSection />
+      <ContactSection />
+      <Footer />
       <JoelChatBot />
       <WhatsAppButton />
     </main>
