@@ -10,12 +10,10 @@ import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import JoelChatBot from '@/components/JoelChatBot';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import WarningBanner from '@/components/WarningBanner';
 
 const Index = () => {
   return (
     <main className="min-h-screen">
-      <WarningBanner />
       <Navigation />
       <HeroSection />
       <AboutSection />

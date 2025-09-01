@@ -1,5 +1,6 @@
 import { ArrowDown, Star, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import WarningBanner from '@/components/WarningBanner';
 
 const HeroSection = () => {
   return (
@@ -40,6 +41,11 @@ const HeroSection = () => {
               <div className="font-sans text-sm text-muted-foreground font-medium">Ressuscités pour sauver !</div>
             </div>
           </div>
+        </div>
+
+        {/* Bandeau d'avertissement */}
+        <div className="mb-8">
+          <WarningBanner />
         </div>
 
         {/* Main Title - H1 optimisé SEO */}

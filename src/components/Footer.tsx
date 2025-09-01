@@ -9,7 +9,6 @@ const Footer = () => {
     { name: 'Ministère', href: '#ministere' },
     { name: 'Galerie', href: '#galerie' },
     { name: 'Contact', href: '#contact' },
-    { name: 'Mentions Légales', href: '/mentions-legales' },
     { name: 'Admin Prières', href: '/admin/prayers' }
   ];
 
@@ -124,6 +123,14 @@ const Footer = () => {
               <div className="font-sans text-background/70 text-sm">
                 Développé avec ❤️ pour la gloire de Dieu
               </div>
+            </div>
+            <div className="mt-4 pt-4 border-t border-background/10">
+              <a 
+                href="/mentions-legales" 
+                className="font-sans text-background/60 text-xs hover:text-primary transition-colors"
+              >
+                Mentions Légales
+              </a>
             </div>
           </div>
         </div>
