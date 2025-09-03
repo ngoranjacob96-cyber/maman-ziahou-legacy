@@ -45,6 +45,10 @@ export default {
 					DEFAULT: 'hsl(var(--warning))',
 					foreground: 'hsl(var(--warning-foreground))'
 				},
+				donation: {
+					DEFAULT: 'hsl(var(--donation))',
+					foreground: 'hsl(var(--donation-foreground))'
+				},
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
 					foreground: 'hsl(var(--muted-foreground))'

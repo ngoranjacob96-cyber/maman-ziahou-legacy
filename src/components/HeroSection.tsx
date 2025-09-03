@@ -116,6 +116,13 @@ const HeroSection = () => {
           >
             Discuter avec Maman ZIAHOU
           </Button>
+          <Button 
+            size="lg"
+            onClick={handleDonation}
+            className="font-sans text-lg px-8 py-4 bg-donation text-donation-foreground hover:bg-donation/90 shadow-golden"
+          >
+            💝 Faire un don
+          </Button>
         </div>
 
         {/* Scroll Indicator */}
