@@ -152,29 +152,12 @@ const GallerySection = () => {
     {
       type: 'audio',
       category: 'temoignages',
-      title: 'Miracle Financier - Jean Baptiste',
-      description: 'Comment Dieu a transformé ma situation financière après les prières',
-      audioUrl: 'https://soundcloud.com/ngoran-jacob/temoignage-miracle-jean',
-      duration: '12:30',
-      date: '20.08.2024'
-    },
-    {
-      type: 'audio',
-      category: 'temoignages',
-      title: 'Restauration Familiale - Awa Traoré',
-      description: 'Témoignage touchant sur la restauration de mon mariage',
-      audioUrl: 'https://soundcloud.com/ngoran-jacob/temoignage-famille-awa',
-      duration: '15:20',
-      date: '05.07.2024'
-    },
-    {
-      type: 'audio',
-      category: 'temoignages',
-      title: 'Délivrance Spirituelle - Koffi Assamoi',
-      description: 'Mon témoignage de délivrance des liens spirituels négatifs',
-      audioUrl: 'https://soundcloud.com/ngoran-jacob/temoignage-delivrance-koffi',
-      duration: '18:15',
-      date: '12.06.2024'
+      title: 'Témoignage de Brian Assoumou',
+      description: 'Témoignage puissant de délivrance et de transformation spirituelle - EEREB 24/08/2025',
+      audioUrl: 'https://soundcloud.com/ngoran-jacob/temoignage-brian-assoumou-2?in=ngoran-jacob/sets/temoignages&si=493dca11a7254a5e9d2561b1194736ee&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+      duration: '',
+      date: '24.08.2025',
+      image: '/lovable-uploads/a9b8a0a8-966b-47e7-9eee-714f861300fa.png'
     }
   ];
 
