@@ -37,6 +37,7 @@ const GallerySection = () => {
     audioUrl: string;
     duration: string;
     date: string;
+    image?: string; // Ajout pour l'image du témoignage
   };
 
   type GalleryItem = ImageItem | VideoItem | AudioItem;
@@ -141,11 +142,12 @@ const GallerySection = () => {
     {
       type: 'audio',
       category: 'temoignages',
-      title: 'Témoignage de Guérison - Marie Kouamé',
-      description: 'Témoignage puissant de guérison divine par la prière de Maman ZIAHOU',
-      audioUrl: 'https://soundcloud.com/ngoran-jacob/temoignage-guerison-marie',
-      duration: '8:45',
-      date: '15.09.2024'
+      title: 'Témoignage d\'Alice Makoma',
+      description: 'Témoignage touchant de transformation par la grâce de Dieu - EEREB 24/08/2025',
+      audioUrl: 'https://soundcloud.com/ngoran-jacob/temoignage-alice-makoma-1?in=ngoran-jacob/sets/temoignages&si=db772cba3e1f4fd7847ed4232e812583&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing',
+      duration: '',
+      date: '24.08.2025',
+      image: '/lovable-uploads/4b3fe997-fefc-4887-ac9d-828e31094910.png'
     },
     {
       type: 'audio',
@@ -284,6 +286,17 @@ const GallerySection = () => {
       className="group overflow-hidden hover:shadow-card transition-all duration-300 bg-background/80 backdrop-blur-sm border-primary/10"
     >
       <div className="p-6">
+        {/* Image du témoignage si disponible */}
+        {item.image && (
+          <div className="mb-4">
+            <img
+              src={item.image}
+              alt={item.title}
+              className="w-full h-48 object-cover rounded-lg"
+            />
+          </div>
+        )}
+        
         <div className="flex items-center space-x-4">
           <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center flex-shrink-0">
             <Volume2 className="h-8 w-8 text-primary-foreground" />
