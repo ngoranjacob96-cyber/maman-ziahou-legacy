@@ -136,6 +136,46 @@ const GallerySection = () => {
     }
   ];
 
+  // Données témoignages audios
+  const testimonialAudios: AudioItem[] = [
+    {
+      type: 'audio',
+      category: 'temoignages',
+      title: 'Témoignage de Guérison - Marie Kouamé',
+      description: 'Témoignage puissant de guérison divine par la prière de Maman ZIAHOU',
+      audioUrl: 'https://soundcloud.com/ngoran-jacob/temoignage-guerison-marie',
+      duration: '8:45',
+      date: '15.09.2024'
+    },
+    {
+      type: 'audio',
+      category: 'temoignages',
+      title: 'Miracle Financier - Jean Baptiste',
+      description: 'Comment Dieu a transformé ma situation financière après les prières',
+      audioUrl: 'https://soundcloud.com/ngoran-jacob/temoignage-miracle-jean',
+      duration: '12:30',
+      date: '20.08.2024'
+    },
+    {
+      type: 'audio',
+      category: 'temoignages',
+      title: 'Restauration Familiale - Awa Traoré',
+      description: 'Témoignage touchant sur la restauration de mon mariage',
+      audioUrl: 'https://soundcloud.com/ngoran-jacob/temoignage-famille-awa',
+      duration: '15:20',
+      date: '05.07.2024'
+    },
+    {
+      type: 'audio',
+      category: 'temoignages',
+      title: 'Délivrance Spirituelle - Koffi Assamoi',
+      description: 'Mon témoignage de délivrance des liens spirituels négatifs',
+      audioUrl: 'https://soundcloud.com/ngoran-jacob/temoignage-delivrance-koffi',
+      duration: '18:15',
+      date: '12.06.2024'
+    }
+  ];
+
   // Toutes les données combinées (sans les audios pour la grille principale)
   const allGalleryItems: GalleryItem[] = [...galleryImages, ...galleryVideos];
 
@@ -342,7 +382,7 @@ const GallerySection = () => {
           </div>
 
           {/* Audio Section - Toujours visible */}
-          <div className="mt-20">
+          <div className="mb-20">
             <div className="text-center mb-12">
               <h3 className="font-script text-3xl md:text-4xl font-bold text-primary mb-4">
                 Nos Audios
@@ -355,6 +395,23 @@ const GallerySection = () => {
             
             <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
               {galleryAudios.map((item, index) => renderAudioItem(item, index))}
+            </div>
+          </div>
+
+          {/* Section Témoignages Audios */}
+          <div className="mt-20">
+            <div className="text-center mb-12">
+              <h3 className="font-script text-3xl md:text-4xl font-bold text-primary mb-4">
+                Témoignages
+              </h3>
+              <div className="w-16 h-1 bg-primary mx-auto mb-4"></div>
+              <p className="font-sans text-muted-foreground max-w-xl mx-auto">
+                Écoutez les témoignages touchants de transformation de vies par la grâce de Dieu
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
+              {testimonialAudios.map((item, index) => renderAudioItem(item, index))}
             </div>
           </div>
 
