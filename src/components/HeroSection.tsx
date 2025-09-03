@@ -119,9 +119,9 @@ const HeroSection = () => {
           <Button 
             size="lg"
             onClick={handleDonation}
-            className="font-sans text-lg px-8 py-4 bg-donation text-donation-foreground hover:bg-donation/90 shadow-golden"
+            className="font-sans text-lg px-8 py-4 bg-donation text-donation-foreground hover:bg-donation-glow hover:scale-105 transition-all duration-300 animate-pulse-glow shadow-2xl border-2 border-donation-glow/50 font-bold"
           >
-            💝 Faire un don
+            💖 Faire un don 🙏
           </Button>
         </div>
 
