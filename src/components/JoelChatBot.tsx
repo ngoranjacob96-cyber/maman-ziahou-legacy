@@ -109,6 +109,37 @@ const JoelChatBot = () => {
     }
   };
 
+  const handleDonation = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('donations')
+        .insert({
+          user_agent: navigator.userAgent,
+          referrer: window.location.href,
+          status: 'clicked'
+        });
+
+      if (error) {
+        console.error('Error recording donation:', error);
+      }
+
+      // Redirection vers Paystack
+      window.open('https://paystack.com/pay/eerebdons', '_blank');
+      
+      toast({
+        title: 'Redirection vers le paiement',
+        description: 'Vous allez être redirigé vers notre plateforme de don sécurisée.',
+      });
+    } catch (error) {
+      console.error('Error:', error);
+      toast({
+        title: 'Erreur',
+        description: 'Une erreur est survenue. Veuillez réessayer.',
+        variant: 'destructive'
+      });
+    }
+  };
+
   const quickAction = (message: string) => {
     // Si c'est une demande de prière, fermer le chat et rediriger
     if (message.includes('demande de prière') || message.includes('prier pour moi')) {
@@ -121,6 +152,13 @@ const JoelChatBot = () => {
       }, 300);
       return;
     }
+    
+    // Si c'est une demande de don, ouvrir le lien de paiement
+    if (message.includes('faire un don') || message.includes('donation')) {
+      handleDonation();
+      return;
+    }
+    
     setInputMessage(message);
   };
 
@@ -284,6 +322,14 @@ const JoelChatBot = () => {
                 className="text-xs h-8 rounded-full hover:bg-primary/10"
               >
                 Horaires
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => quickAction('Je veux faire un don pour soutenir l\'église')}
+                className="text-xs h-8 rounded-full hover:bg-primary/10"
+              >
+                💖 Don
               </Button>
             </div>
           </div>

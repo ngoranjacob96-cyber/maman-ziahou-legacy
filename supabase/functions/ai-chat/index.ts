@@ -136,6 +136,26 @@ function getFallbackResponse(message: string): string {
     return responses[Math.floor(Math.random() * responses.length)];
   }
   
+  // Questions sur les dons et donations
+  if (lowerMessage.includes('don') || lowerMessage.includes('donner') || lowerMessage.includes('soutenir') || lowerMessage.includes('donation') || lowerMessage.includes('contribuer') || lowerMessage.includes('offrande') || lowerMessage.includes('paiement')) {
+    const donationResponses = [
+      "🙏 Merci pour votre cœur généreux ! Vos dons soutiennent l'évangélisation et les œuvres sociales de l'E.E.R.E.B. Chaque contribution compte et sera utilisée pour la gloire de Dieu ! Cliquez sur 'Faire un don' pour contribuer en toute sécurité. 💖",
+      "✨ Votre générosité touche nos cœurs ! Les dons permettent à l'E.E.R.E.B de continuer son ministère, aider les familles dans le besoin et évangéliser. Que Dieu vous bénisse pour votre désir de contribuer ! Utilisez le bouton de don sécurisé. 🌟",
+      "❤️ Quelle belle initiative ! Vos dons aident l'E.E.R.E.B à transformer des vies, former des leaders spirituels et servir les plus démunis. Chaque franc compte dans l'œuvre de Dieu ! Procédez au don via notre plateforme sécurisée. 🙏"
+    ];
+    return donationResponses[Math.floor(Math.random() * donationResponses.length)];
+  }
+
+  // Sécurité et transparence des dons
+  if (lowerMessage.includes('sécurit') || lowerMessage.includes('sûr') || lowerMessage.includes('fiable') || lowerMessage.includes('confiance') || lowerMessage.includes('transparent')) {
+    return "🔒 Votre sécurité est notre priorité ! Nous utilisons des systèmes de paiement sécurisés et certifiés. Tous les dons sont traçables et utilisés exclusivement pour l'œuvre de Dieu : évangélisation, aide aux nécessiteux, et développement de l'église. Donnez en toute confiance ! 💙";
+  }
+
+  // Utilisation des dons
+  if (lowerMessage.includes('utilise') || lowerMessage.includes('argent') || lowerMessage.includes('budget') || lowerMessage.includes('quoi faire') || lowerMessage.includes('comment') && lowerMessage.includes('don')) {
+    return "📊 Vos dons financent : l'évangélisation en Côte d'Ivoire (40%), l'aide aux familles nécessiteuses (25%), la formation biblique des leaders (20%), et les infrastructures de l'église (15%). Chaque franc est investi dans l'œuvre de Dieu avec transparence et intégrité ! 🏆";
+  }
+
   // Demande de prière - redirection vers formulaire
   if (lowerMessage.includes('demande de prière') || lowerMessage.includes('prier pour moi') || lowerMessage.includes('besoin de prière')) {
     return "Je vous redirige vers notre formulaire de demande de prière. Notre équipe pastorale priera pour vous avec amour ! 🙏";
@@ -234,6 +254,13 @@ VIDÉOS YOUTUBE:
 - "https://youtu.be/xMHSxReg1OI" : Prédication "La Foi qui Transforme" (45:32) - 12.5K vues
 - "https://youtu.be/I_UfgyA5erc" : Témoignage Miracle de Guérison (32:15) - 8.2K vues  
 - "https://youtu.be/_J7BfHIaB9M" : Culte de Louange Spécial (1:23:45) - 15.7K vues
+
+QUESTIONS SUR LES DONS :
+Réponds avec empathie et transparence concernant :
+- Sécurité des transactions (systèmes certifiés, traçabilité)
+- Utilisation des fonds (évangélisation 40%, aide sociale 25%, formation 20%, infrastructure 15%)
+- Impact positif (transformation de vies, soutien aux nécessiteux)
+- Reconnaissance spirituelle (bénédictions de Dieu pour la générosité)
 
 FONCTIONNALITÉ MÉDIAS :
 Quand l'utilisateur demande des images/vidéos/audios/médias, tu DOIS répondre avec le format JSON suivant :
