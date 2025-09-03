@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      donations: {
+        Row: {
+          amount: number | null
+          clicked_at: string
+          created_at: string
+          id: string
+          paystack_reference: string | null
+          referrer: string | null
+          status: string | null
+          updated_at: string
+          user_agent: string | null
+          user_ip: string | null
+        }
+        Insert: {
+          amount?: number | null
+          clicked_at?: string
+          created_at?: string
+          id?: string
+          paystack_reference?: string | null
+          referrer?: string | null
+          status?: string | null
+          updated_at?: string
+          user_agent?: string | null
+          user_ip?: string | null
+        }
+        Update: {
+          amount?: number | null
+          clicked_at?: string
+          created_at?: string
+          id?: string
+          paystack_reference?: string | null
+          referrer?: string | null
+          status?: string | null
+          updated_at?: string
+          user_agent?: string | null
+          user_ip?: string | null
+        }
+        Relationships: []
+      }
       prayer_requests: {
         Row: {
           created_at: string

@@ -1,8 +1,28 @@
 import { ArrowDown, Star, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import WarningBanner from '@/components/WarningBanner';
+import { supabase } from '@/integrations/supabase/client';
 
 const HeroSection = () => {
+  const handleDonation = async () => {
+    try {
+      // Enregistrer l'intention de don dans Supabase
+      await supabase.from('donations').insert({
+        user_ip: null, // Ne pas collecter l'IP pour la confidentialité
+        user_agent: navigator.userAgent,
+        referrer: window.location.href,
+        status: 'clicked'
+      });
+      
+      // Rediriger vers Paystack
+      window.open('https://paystack.shop/pay/aajgw1uygw', '_blank');
+    } catch (error) {
+      console.error('Erreur lors de l\'enregistrement du don:', error);
+      // Rediriger quand même vers Paystack
+      window.open('https://paystack.shop/pay/aajgw1uygw', '_blank');
+    }
+  };
+
   return (
     <section id="accueil" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero pt-20">
       {/* Background Image with Overlay */}
