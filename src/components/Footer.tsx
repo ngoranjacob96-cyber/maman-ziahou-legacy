@@ -1,4 +1,4 @@
-import { Heart, Facebook, Instagram, MessageCircle, Mail, Phone, MapPin } from 'lucide-react';
+import { Heart, Facebook, MessageCircle, Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -42,13 +42,15 @@ const Footer = () => {
                 une communauté de foi dédiée à l'évangélisation et à la transformation des vies.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
+                <a 
+                  href="https://web.facebook.com/eerebciv" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+                >
                   <Facebook className="h-5 w-5" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
-                  <Instagram className="h-5 w-5" />
-                </a>
-                <a href="#" className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
+                <a href="tel:07008183988" className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
                   <MessageCircle className="h-5 w-5" />
                 </a>
               </div>

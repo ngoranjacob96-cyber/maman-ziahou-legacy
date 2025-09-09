@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Clock, Facebook, Instagram, MessageCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Facebook, MessageCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
@@ -35,13 +35,8 @@ const ContactSection = () => {
       icon: Facebook,
       name: "Facebook",
       handle: "@EEREBOfficiel",
-      color: "text-blue-600"
-    },
-    {
-      icon: Instagram,
-      name: "Instagram", 
-      handle: "@eereb_officiel",
-      color: "text-pink-600"
+      color: "text-blue-600",
+      url: "https://web.facebook.com/eerebciv"
     },
     {
       icon: MessageCircle,
@@ -114,21 +109,29 @@ const ContactSection = () => {
                   {socialLinks.map((social, index) => {
                     const IconComponent = social.icon;
                     return (
-                      <Card key={index} className="group hover:shadow-card transition-all duration-300 bg-background/80 backdrop-blur-sm border-primary/10 cursor-pointer">
-                        <CardContent className="p-4">
-                          <div className="flex items-center space-x-3">
-                            <IconComponent className={`h-6 w-6 ${social.color} group-hover:scale-110 transition-transform duration-300`} />
-                            <div>
-                              <div className="font-script font-semibold text-foreground">
-                                {social.name}
-                              </div>
-                              <div className="font-sans text-sm text-muted-foreground">
-                                {social.handle}
+                      <a 
+                        key={index}
+                        href={social.url || `tel:${social.handle.replace(/\s/g, '')}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block"
+                      >
+                        <Card className="group hover:shadow-card transition-all duration-300 bg-background/80 backdrop-blur-sm border-primary/10 cursor-pointer">
+                          <CardContent className="p-4">
+                            <div className="flex items-center space-x-3">
+                              <IconComponent className={`h-6 w-6 ${social.color} group-hover:scale-110 transition-transform duration-300`} />
+                              <div>
+                                <div className="font-script font-semibold text-foreground">
+                                  {social.name}
+                                </div>
+                                <div className="font-sans text-sm text-muted-foreground">
+                                  {social.handle}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </CardContent>
-                      </Card>
+                          </CardContent>
+                        </Card>
+                      </a>
                     );
                   })}
                 </div>
